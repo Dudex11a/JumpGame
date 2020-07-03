@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Object/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Object/Collision/Collision.tscn" type="PackedScene" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Object/Enemy/Enemy.tscn" type="PackedScene" id=4]
+
+[node name="Main" type="Node2D"]
+
+[node name="Collision" parent="." instance=ExtResource( 2 )]
+position = Vector2( 300, 600 )
+
+[node name="Sprite" type="Sprite" parent="Collision"]
+modulate = Color( 0.376471, 0, 0, 1 )
+position = Vector2( -4.94977, 1.41422 )
+scale = Vector2( 15.573, 3.09922 )
+texture = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 74.9142, 350.696 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+
+[node name="Enemy" parent="Camera2D" instance=ExtResource( 4 )]
+position = Vector2( 1238.05, 353.014 )
