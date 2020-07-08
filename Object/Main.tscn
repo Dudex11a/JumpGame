@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Object/Collision/Collision.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Object/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Object/Actor/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://Object/Main.gd" type="Script" id=5]
 [ext_resource path="res://Object/EnemySpawn.gd" type="Script" id=6]
@@ -24,76 +24,26 @@ position = Vector2( -4.94977, 1.41422 )
 scale = Vector2( 15.573, 3.09922 )
 texture = ExtResource( 4 )
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 67.3632, 735.797 )
+[node name="Collision" parent="Collision" instance=ExtResource( 2 )]
+position = Vector2( -41.9997, -998.316 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 37.4177, 757.264 )
+base_gravity = 1.0
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 0, 188 )
 anchor_mode = 0
 current = true
 
-[node name="DestroyLine" type="Area2D" parent="."]
-position = Vector2( -232.087, 454.592 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyLine"]
-shape = SubResource( 1 )
-
-[node name="PlayerLine" type="Area2D" parent="."]
-position = Vector2( 67, 454.592 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerLine"]
-shape = SubResource( 1 )
-
-[node name="EnemySpawn" type="Position2D" parent="." groups=[
-"PlayerCollision",
-]]
-position = Vector2( 990, 724.592 )
-script = ExtResource( 6 )
-
-[node name="Timer" type="Timer" parent="EnemySpawn" groups=[
-"ChangeSpeedMod",
-]]
-one_shot = true
-autostart = true
-
-[node name="UI" type="Control" parent="."]
-margin_right = 600.0
-margin_bottom = 1000.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Results" type="PanelContainer" parent="UI"]
-visible = false
-self_modulate = Color( 1, 1, 1, 0.388235 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="UI" type="Control" parent="Camera"]
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Results"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 593.0
-margin_bottom = 993.0
-alignment = 1
-
-[node name="Restart" type="Button" parent="UI/Results/VBoxContainer"]
-margin_right = 586.0
-margin_bottom = 491.0
-size_flags_vertical = 3
-text = "Restart"
-
-[node name="MainMenu" type="Button" parent="UI/Results/VBoxContainer"]
-margin_top = 495.0
-margin_right = 586.0
-margin_bottom = 986.0
-size_flags_vertical = 3
-text = "Main Menu"
-
-[node name="PanelContainer" type="PanelContainer" parent="UI"]
+[node name="PanelContainer" type="PanelContainer" parent="Camera/UI"]
 margin_left = 2.08093
 margin_top = 30.4863
 margin_right = 72.0809
@@ -104,14 +54,70 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Score" type="Label" parent="UI/PanelContainer"]
+[node name="Score" type="Label" parent="Camera/UI/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 63.0
 margin_bottom = 21.0
 text = "0"
+
+[node name="Results" type="PanelContainer" parent="Camera/UI"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.388235 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera/UI/Results"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 90.0
+margin_bottom = 51.0
+alignment = 1
+
+[node name="Restart" type="Button" parent="Camera/UI/Results/VBoxContainer"]
+margin_right = 83.0
+margin_bottom = 20.0
+size_flags_vertical = 3
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="Camera/UI/Results/VBoxContainer"]
+margin_top = 24.0
+margin_right = 83.0
+margin_bottom = 44.0
+size_flags_vertical = 3
+text = "Main Menu"
+
+[node name="DestroyLine" type="Area2D" parent="."]
+position = Vector2( -50, 454.592 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyLine"]
+shape = SubResource( 1 )
+
+[node name="ScoreLine" type="Area2D" parent="."]
+position = Vector2( 67, 454.592 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreLine"]
+position = Vector2( -65.9265, -1.78174 )
+shape = SubResource( 1 )
+
+[node name="EnemySpawn" type="Position2D" parent="." groups=[
+"PlayerCollision",
+]]
+position = Vector2( 482.188, 749.537 )
+script = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="EnemySpawn" groups=[
+"ChangeSpeedMod",
+]]
+one_shot = true
+autostart = true
+[connection signal="pressed" from="Camera/UI/Results/VBoxContainer/Restart" to="." method="restart"]
+[connection signal="pressed" from="Camera/UI/Results/VBoxContainer/MainMenu" to="." method="goto_mainmenu"]
 [connection signal="body_exited" from="DestroyLine" to="." method="_on_DestroyLine_body_exited"]
-[connection signal="body_exited" from="PlayerLine" to="." method="_PlayerLine_body_exited"]
+[connection signal="body_exited" from="ScoreLine" to="." method="_PlayerLine_body_exited"]
 [connection signal="timeout" from="EnemySpawn/Timer" to="EnemySpawn" method="_on_Timer_timeout"]
-[connection signal="pressed" from="UI/Results/VBoxContainer/Restart" to="." method="restart"]
-[connection signal="pressed" from="UI/Results/VBoxContainer/MainMenu" to="." method="goto_mainmenu"]

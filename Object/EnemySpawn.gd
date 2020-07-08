@@ -6,7 +6,7 @@ onready var timer := $Timer
 var active := true
 
 func enemy_object() -> KinematicBody2D:
-	var enemy_resource := load("res://Object/Enemy/Enemy.tscn")
+	var enemy_resource := load("res://Object/Actor/Enemy/Enemy.tscn")
 	return enemy_resource.instance()
 
 func spawn_enemy():

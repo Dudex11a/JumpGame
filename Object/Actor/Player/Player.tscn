@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Object/Actor/Actor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Object/Actor/Player/Player.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 33.9551, 26.2108 )
+
+[node name="Player" groups=[
+"Player",
+] instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+base_gravity = 1.0
+
+[node name="Detect" type="Area2D" parent="." index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect" index="0"]
+shape = SubResource( 1 )
+[connection signal="body_entered" from="Detect" to="." method="detected"]
