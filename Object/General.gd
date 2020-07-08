@@ -1,6 +1,9 @@
 extends Node
 
-const delta_factor := 50
+const delta_factor := 50.0
+const max_speed_up := 2.0
+const how_many_to_max := 5
+
 var rng := RandomNumberGenerator.new()
 
 func change_scene(scene_path: String):

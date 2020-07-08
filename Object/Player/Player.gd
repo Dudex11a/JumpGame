@@ -9,9 +9,9 @@ var score := 0 setget set_score
 
 func _physics_process(delta):
 	
-	velocity.y += gravity * 50
+	velocity.y += gravity * 50 * (delta * G.delta_factor)
 	
-	move_and_slide(velocity * delta * G.delta_factor, Vector2.UP)
+	move_and_slide(velocity, Vector2.UP)
 
 func _input(event):
 	if event.is_action_pressed("jump") and is_on_floor():

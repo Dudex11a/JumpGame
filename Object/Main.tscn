@@ -46,14 +46,12 @@ shape = SubResource( 1 )
 [node name="EnemySpawn" type="Position2D" parent="." groups=[
 "PlayerCollision",
 ]]
-position = Vector2( 964, 56.592 )
+position = Vector2( 990, 724.592 )
 script = ExtResource( 6 )
 
-[node name="EndPos" type="Position2D" parent="EnemySpawn"]
-position = Vector2( 284, 706 )
-
-[node name="Timer" type="Timer" parent="EnemySpawn"]
-wait_time = 0.3
+[node name="Timer" type="Timer" parent="EnemySpawn" groups=[
+"ChangeSpeedMod",
+]]
 one_shot = true
 autostart = true
 
