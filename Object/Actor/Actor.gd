@@ -4,9 +4,10 @@ func get_class(): return "Actor"
 
 export var speed: float = 1
 export var base_gravity: float = 1
-var gravity := base_gravity
+onready var gravity := base_gravity
 var velocity := Vector2()
 var rising := false
+var active := true setget set_active
 
 func _physics_process(delta):
 	
@@ -27,3 +28,7 @@ func _physics_process(delta):
 
 func collision(collision: KinematicCollision2D):
 	pass
+
+func set_active(value: bool):
+	active = value
+	set_physics_process(value)

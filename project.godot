@@ -14,14 +14,32 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Object/Actor/Actor.gd"
 }, {
+"base": "StaticBody2D",
+"class": "Collision",
+"language": "GDScript",
+"path": "res://Object/Collision/Collision.gd"
+}, {
+"base": "Enemy",
+"class": "EndPoint",
+"language": "GDScript",
+"path": "res://Object/Actor/Enemy/Enemies/SequenceEndPoint/SequenceEndPoint.gd"
+}, {
 "base": "Actor",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://Object/Actor/Enemy/Enemy.gd"
+}, {
+"base": "Node2D",
+"class": "Sequence",
+"language": "GDScript",
+"path": "res://Object/Sequence/Sequence.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
-"Enemy": ""
+"Collision": "",
+"EndPoint": "",
+"Enemy": "",
+"Sequence": ""
 }
 
 [application]

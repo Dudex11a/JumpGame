@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+path="res://.import/EndPoint.png-4fe0b2abef89ed90348e4478efe4a924.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" ]
+source_file="res://Object/Actor/Enemy/Enemies/SequenceEndPoint/EndPoint.png"
+dest_files=[ "res://.import/EndPoint.png-4fe0b2abef89ed90348e4478efe4a924.stex" ]
 
 [params]
 

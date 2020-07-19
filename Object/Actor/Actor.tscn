@@ -3,7 +3,8 @@
 [ext_resource path="res://Object/Actor/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Object/Actor/Dog.png" type="Texture" id=2]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=3]
+resource_local_to_scene = true
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
@@ -19,7 +20,7 @@ script = ExtResource( 1 )
 base_gravity = 0.0
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
+frames = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

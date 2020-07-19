@@ -4,10 +4,10 @@ func get_class(): return "Enemy"
 
 var speed_mod := 1.0
 
-func _physics_process(delta):
-	velocity.x = speed
-
 func player_collision(collider):
+	game_over()
+
+func game_over():
 	queue_free()
 
 func change_speed_mod(speed_mod: float):

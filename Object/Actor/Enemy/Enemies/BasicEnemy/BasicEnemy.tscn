@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Object/Actor/Enemy/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://Object/Actor/Actor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Object/Actor/Enemy/Enemies/BasicEnemy/BasicEnemy.gd" type="Script" id=1]
+[ext_resource path="res://Object/Actor/Enemy/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Object/Actor/Dog.png" type="Texture" id=3]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -13,12 +13,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Enemy" groups=[
-"ChangeModSpeed",
-"GameOver",
-"PlayerCollision",
-] instance=ExtResource( 2 )]
-position = Vector2( -1, 0 )
+[node name="Enemy" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
 
 [node name="Sprite" parent="." index="0"]
