@@ -5,13 +5,35 @@ onready var death_anim := $DeathAnimPlayer
 
 var score := 0 setget set_score
 
+signal jump
+
+var rest_time := 0.3
 var last_collision: float
+
+func _ready():
+	# This two lines are so you start out with no gravity
+	# but when you jump gravity kicks on
+	connect("jump", self, "first_jump")
+	gravity = 0
+
+func _process(delta):
+	# If is not in death anim
+	if not (death_anim.is_playing() and death_anim.current_animation == "Death"):
+		tilt_by_velocity()
+
+func tilt_by_velocity():
+	var tilt := clamp(velocity.y, -500, 500) / 1000
+	sprite.rotation = tilt
+
+# Set the gravity and disconnect the signal so it won't be called again
+func first_jump():
+	gravity = base_gravity
+	disconnect("jump", self, "first_jump")
 
 func _input(event):
 	if event.is_action_pressed("jump"):
 		rising = true
-		# Fast burst of speed
-#		velocity.y -= 500
+		emit_signal("jump")
 	if event.is_action_released("jump"):
 		rising = false
 	if event.is_action_released("return"):
@@ -33,7 +55,7 @@ func start_death_countdown():
 
 func update_countdown():
 	# If it's been too long since the last collision stop
-	if not (death_anim.current_animation_position - 0.5 < last_collision):
+	if not (death_anim.current_animation_position - rest_time < last_collision):
 		death_anim.stop(true)
 
 # Check if the player is on the floor or cieling moments before the kill

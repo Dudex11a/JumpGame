@@ -13,14 +13,24 @@ const difficulty = {
 var rng := RandomNumberGenerator.new()
 
 func change_scene(scene_path: String):
+	var viewport := get_viewport()
+	
 	# Delete all children that aren't node
-	for child in get_viewport().get_children():
+	for child in viewport.get_children():
 		if child.get_class() != "Node":
 			child.queue_free()
+			
+	# Start loading the node
+	var scene = make_node(scene_path)
+	# Start anim
+	var transition = make_node("res://Object/SceneTransition/SceneTransition.tscn")
+	viewport.add_child(transition)
+	yield(transition, "finished_in")
+	
 	# Add scene given
-	var scene_resource := load(scene_path)
-	var scene = scene_resource.instance()
-	get_viewport().add_child(scene)
+	viewport.add_child(scene)
+	
+	# End anim
 
 func start_game():
 	change_scene("res://Object/Main.tscn")
@@ -64,3 +74,28 @@ func make_node(path: String) -> Node:
 
 func random_in_array(array: Array):
 	return array[G.rng.randi_range(1, array.size()) - 1]
+
+func make_time(msecs_elapsed: int) -> String:
+	var secs_elapsed := int(msecs_elapsed / 1000)
+	var seconds := secs_elapsed % 60
+	
+	var minutes_elapsed: int = floor(float(secs_elapsed) / 60.0)
+	var minutes := minutes_elapsed % 60
+	
+	var hours := floor(float(minutes_elapsed) / 60.0)
+	
+	var seconds_string := String(seconds)
+	if seconds_string.length() < 2:
+		seconds_string = "0" + seconds_string
+		
+	var minutes_string := String(minutes)
+	if minutes_string.length() < 2:
+		minutes_string = "0" + minutes_string
+	minutes_string += ":"
+		
+	var hours_string := ""
+	if hours > 0:
+		hours_string = String(hours) + ":"
+	
+	var time_string := hours_string + minutes_string + seconds_string
+	return time_string
