@@ -23,6 +23,8 @@ func _process(delta):
 
 func tilt_by_velocity():
 	var tilt := clamp(velocity.y, -500, 500) / 1000
+	if is_on_floor():
+		tilt = 0
 	sprite.rotation = tilt
 
 # Set the gravity and disconnect the signal so it won't be called again

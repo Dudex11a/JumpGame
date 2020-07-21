@@ -1,6 +1,8 @@
-extends Polygon2D
+extends Node2D
 
 onready var anim_player: AnimationPlayer = $AnimationPlayer
+onready var transition_shape: Polygon2D = $Polygon
+onready var screne_capture: Sprite = $ScreneCapture
 
 signal finished_in
 signal finished_out
@@ -9,7 +11,7 @@ signal transition_end
 var polygon_queue: Array
 
 func _ready():	
-	position = get_viewport().size / 2
+	transition_shape.position = get_viewport().size / 2
 	
 	anim_player.play("TransitionIn")
 	# How much px it should increment each time
@@ -21,17 +23,27 @@ func _ready():
 	# (This is the maximum amount of times it takes to reach the destination_px)
 	var amount_of_polygons: int = floor(destination_px / minimum_increment(increment))
 	# I initialize it here first so the loop uses the first thing in the array as a base
-	polygon_queue = [increment_polygon(polygon, increment)]
+	polygon_queue = [increment_polygon(transition_shape.polygon, increment)]
 	for i in range(1, amount_of_polygons + 1):
 		polygon_queue.append(increment_polygon(polygon_queue[i - 1], increment))
 	
 	transition()
 
 func transition(anim: String = "TransitionIn"):
+	match anim:
+		"TransitionIn":
+			var img = get_viewport().get_texture().get_data()
+			yield(get_tree(), "idle_frame")
+			yield(get_tree(), "idle_frame")
+			var tex = ImageTexture.new()
+			tex.create_from_image(img)
+			screne_capture.texture = tex
+		"TransitionOut":
+			screne_capture.texture = null
 	var anim_length := anim_player.get_animation(anim).length
 	var individual_length: float = anim_length / polygon_queue.size()
 	for poly in polygon_queue:
-		polygon = poly
+		transition_shape.polygon = poly
 		yield(get_tree().create_timer(0.01), "timeout")
 	emit_signal("transition_end")
 	
@@ -75,3 +87,7 @@ func random_increment(base: float, increment: float) -> float:
 		value = G.rng.randf_range(value + (minimum_increment(increment)), value + increment)
 	value *= modifier
 	return value
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	pass # Replace with function body.

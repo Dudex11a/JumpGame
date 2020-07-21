@@ -99,3 +99,14 @@ func make_time(msecs_elapsed: int) -> String:
 	
 	var time_string := hours_string + minutes_string + seconds_string
 	return time_string
+
+func get_main() -> Node:
+	for node in get_viewport().get_children():
+		if node.name == "Main":
+			return node
+	return null
+
+func is_game_over() -> bool:
+	if get_main():
+		return get_main().is_game_over
+	return true

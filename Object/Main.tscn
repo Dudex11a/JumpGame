@@ -10,7 +10,7 @@
 [ext_resource path="res://Object/Background.gd" type="Script" id=8]
 [ext_resource path="res://Theme/Title/Title.tres" type="Theme" id=9]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Background"
 length = 180.0
 step = 1.0
@@ -27,7 +27,7 @@ tracks/0/keys = {
 "values": [ Color( 0.596078, 0.886275, 0.976471, 1 ), Color( 0.215686, 0.364706, 0.584314, 1 ), Color( 0.00392157, 0.0470588, 0.0588235, 1 ), Color( 0.596078, 0.886275, 0.976471, 1 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 347.933 )
 
 [node name="Main" type="Node2D" groups=[
@@ -50,7 +50,7 @@ __meta__ = {
 }
 
 [node name="BackgroundAnimation" type="AnimationPlayer" parent="Background"]
-anims/Background = SubResource( 2 )
+anims/Background = SubResource( 1 )
 
 [node name="Collision" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0.305882 )
@@ -91,6 +91,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 400, 250 )
 
 [node name="HUD" type="Control" parent="." groups=[
+"GameOver",
 "Score",
 ]]
 margin_top = -0.0431595
@@ -145,7 +146,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyLine"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="ScoreLine" type="Area2D" parent="."]
 position = Vector2( 67, 266.549 )
@@ -154,7 +155,7 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreLine"]
 position = Vector2( -65.9265, -1.78174 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="EnemySpawn" type="Position2D" parent="." groups=[
 "PlayerCollision",

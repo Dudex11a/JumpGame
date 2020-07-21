@@ -14,6 +14,7 @@ onready var clouds2: Array = [
 
 onready var start_time := OS.get_ticks_msec()
 
+var is_game_over := false
 var max_speed_up := G.max_speed_up
 var how_many_to_max := G.how_many_to_max
 
