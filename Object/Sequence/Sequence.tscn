@@ -7,4 +7,4 @@
 script = ExtResource( 2 )
 
 [node name="EndPoint" parent="." instance=ExtResource( 1 )]
-position = Vector2( 400, 300 )
+position = Vector2( 0, 300 )

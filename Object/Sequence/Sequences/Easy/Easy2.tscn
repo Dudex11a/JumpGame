@@ -6,10 +6,10 @@
 [node name="Sequence" instance=ExtResource( 1 )]
 
 [node name="Enemy" parent="." index="0" instance=ExtResource( 2 )]
-position = Vector2( 0, 161 )
+position = Vector2( 0, 26.5 )
 
 [node name="Enemy2" parent="." index="1" instance=ExtResource( 2 )]
-position = Vector2( 0, 429 )
+position = Vector2( 2, 572 )
 
 [node name="EndPoint" parent="." index="2"]
 position = Vector2( 0, 293.99 )

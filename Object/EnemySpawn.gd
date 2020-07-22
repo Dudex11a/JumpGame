@@ -6,11 +6,16 @@ var active := true
 
 var sequence_path := "res://Object/Sequence/Sequences/"
 
-var easy := 1
-var normal := 0
-var hard := 0
+var difficulties = {
+	1: 0,
+	2: 0,
+	3: 0
+}
 
-var difficulty_increase := 4
+# The current difficulty from main
+onready var difficulty: int = get_parent().difficulty
+# Once the value reaches this value the difficulty increases
+const difficulty_up := 5
 
 func _ready():
 	yield(get_tree().create_timer(1.0), "timeout")
@@ -22,32 +27,32 @@ func _ready():
 #	return sequence_resource.instance()
 
 func spawn_random_sequence():
-	var difficulties := []
-	for index in range(0, easy):
-		difficulties.append("easy")
-	for index in range(0, normal):
-		difficulties.append("normal")
-	for index in range(0, hard):
-		difficulties.append("hard")
-	# Random difficulty
-	var difficulty: String = G.random_in_array(difficulties)
+	add_difficulty()
+	
+	var difficulty_pool := []
+	
+	# For each difficulty
+	for key in difficulties.keys():
+		# Get the current amount of values to put in the pool
+		var value: int = difficulties[key]
+		# Put the name in the pool for the amount of times in the difficulties
+		for index in range(0, value):
+			difficulty_pool.append(G.difficulty_name[key])
+	
+	var difficulty: String = G.random_in_array(difficulty_pool)
 	var possible_sequences: Array = G.get_files(sequence_path + difficulty)
 	var sequence_path: String = G.random_in_array(possible_sequences)
 	var sequence: Sequence = G.make_node(sequence_path)
 	var spawn_point = Vector2(position.x, position.y)
 	sequence.position = spawn_point
 	get_parent().add_child(sequence)
-	add_difficulty()
 
 func add_difficulty():
-	if easy >= difficulty_increase:
-		if normal >= difficulty_increase:
-			hard += 1
-			return
-		normal += 1
-		return
-	easy += 1
-
+	# If the difficulty should rank up and this is not the last difficulty
+	if difficulties[difficulty] >= difficulty_up and difficulties.keys().size() > difficulty:
+		difficulty += 1
+	difficulties[difficulty] += 1
+	
 #func spawn_sequence(name: String, difficulty: String):
 #	var spawn_point = Vector2(position.x, position.y)
 #	var sequence = make_sequence(name + ".tscn", difficulty)

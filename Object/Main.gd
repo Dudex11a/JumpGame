@@ -1,8 +1,9 @@
 extends Node2D
 
 onready var player := $Player
-onready var hud := $HUD
+onready var hud := $HUDLayer/HUD
 onready var results := $Results
+onready var enemy_spawn := $EnemySpawn
 onready var clouds: Array = [
 	$Collision/CollisionBottom/Clouds,
 	$Collision/CollisionTop/Clouds
@@ -13,6 +14,8 @@ onready var clouds2: Array = [
 ]
 
 onready var start_time := OS.get_ticks_msec()
+
+var difficulty := 1
 
 var is_game_over := false
 var max_speed_up := G.max_speed_up
@@ -31,12 +34,16 @@ func lose():
 	G.change_to_main_menu()
 
 func game_over():
+	# Show results
 	results.visible = true
+	# Display HUD over UI
+	$HUDLayer.z_index = 3
 
 # Score points
 func _PlayerLine_body_exited(body):
 	if body.get_class() == "EndPoint":
-		player.score += 1
+		# Add points from sequence to score
+		player.score += body.get_parent().points
 
 func _on_DestroyLine_body_exited(body):
 	if body is Enemy:

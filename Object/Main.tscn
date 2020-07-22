@@ -90,7 +90,25 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2( 0, 0, 400, 250 )
 
-[node name="HUD" type="Control" parent="." groups=[
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 0, -0.0431595 )
+anchor_mode = 0
+current = true
+
+[node name="HUDLayer" type="Node2D" parent="."]
+
+[node name="Background" type="ColorRect" parent="HUDLayer"]
+margin_top = -0.0431595
+margin_right = 400.0
+margin_bottom = 79.9568
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" type="Control" parent="HUDLayer" groups=[
 "GameOver",
 "Score",
 ]]
@@ -103,39 +121,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="ColorRect" parent="HUD"]
-margin_right = 400.0
-margin_bottom = 80.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Score" type="Label" parent="HUD"]
-margin_left = 7.0
-margin_right = 63.0
+[node name="Score" type="Label" parent="HUDLayer/HUD"]
+margin_left = 5.0
+margin_right = 38.0
 margin_bottom = 88.0
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Time" type="Label" parent="HUD"]
-margin_left = 250.449
-margin_right = 396.449
+[node name="Time" type="Label" parent="HUDLayer/HUD"]
+margin_left = 250.0
+margin_right = 396.0
 margin_bottom = 88.0
 text = "00:00"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Camera" type="Camera2D" parent="."]
-position = Vector2( 0, -0.0431595 )
-anchor_mode = 0
-current = true
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 37.418, 261.957 )
@@ -160,7 +163,7 @@ shape = SubResource( 2 )
 [node name="EnemySpawn" type="Position2D" parent="." groups=[
 "PlayerCollision",
 ]]
-position = Vector2( 400, -0.0431595 )
+position = Vector2( 500, -0.043 )
 script = ExtResource( 6 )
 
 [node name="Results" type="PanelContainer" parent="."]
@@ -196,8 +199,8 @@ margin_right = 98.0
 margin_bottom = 72.0
 size_flags_vertical = 3
 text = "Main Menu"
-[connection signal="body_exited" from="DestroyLine" to="EnemySpawn" method="_on_DestroyLine_body_exited"]
 [connection signal="body_exited" from="DestroyLine" to="." method="_on_DestroyLine_body_exited"]
+[connection signal="body_exited" from="DestroyLine" to="EnemySpawn" method="_on_DestroyLine_body_exited"]
 [connection signal="body_exited" from="ScoreLine" to="." method="_PlayerLine_body_exited"]
 [connection signal="pressed" from="Results/VBoxContainer/Restart" to="." method="restart"]
 [connection signal="pressed" from="Results/VBoxContainer/MainMenu" to="." method="goto_mainmenu"]

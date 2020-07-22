@@ -12,13 +12,17 @@ var active := true setget set_active
 
 func _physics_process(delta):
 	
-	var final_gravity: float = gravity * 100
+	# Apply gravity if there is gravity
+	if gravity != 0:
+		var final_gravity: float = gravity * 100
+		
+		if rising:
+			velocity.y -= final_gravity * 3
+			
+		velocity.y += final_gravity
 	
-	if rising:
-		velocity.y -= final_gravity * 3
-	
-	velocity.x *= 200
-	velocity.y += final_gravity
+	# Multiply speed so it doesn't use super big numbers
+	velocity.x *= G.movement_mod
 	
 	velocity *= delta * G.delta_factor
 	

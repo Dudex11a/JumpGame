@@ -3,16 +3,18 @@ extends Node
 const delta_factor := 50.0
 const max_speed_up := 2.0
 const how_many_to_max := 5
+const movement_mod := 200
 
-const difficulty = {
-	easy = -1,
-	normal = 0,
-	hard = 1
-}
+const difficulty_name = [
+	"none",
+	"easy",
+	"normal",
+	"hard"
+]
 
 var rng := RandomNumberGenerator.new()
 
-func change_scene(scene_path: String):
+func change_scene(scene):
 	var viewport := get_viewport()
 	
 	# Delete all children that aren't node
@@ -20,20 +22,24 @@ func change_scene(scene_path: String):
 		if child.get_class() != "Node":
 			child.queue_free()
 			
-	# Start loading the node
-	var scene = make_node(scene_path)
+	# If the parameter given is a path, make the node
+	if scene is String:
+		scene = make_node(scene)
 	# Start anim
 	var transition = make_node("res://Object/SceneTransition/SceneTransition.tscn")
 	viewport.add_child(transition)
+	
+	# Wait until transition is finished
 	yield(transition, "finished_in")
 	
 	# Add scene given
 	viewport.add_child(scene)
-	
-	# End anim
 
-func start_game():
-	change_scene("res://Object/Main.tscn")
+func start_game(difficulty: int = 1):
+	var game = make_node("res://Object/Main.tscn")
+	# Set the difficulty
+	game.difficulty = difficulty
+	change_scene(game)
 
 func change_to_main_menu():
 	change_scene("res://Object/UI/MainMenu.tscn")
