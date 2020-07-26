@@ -95,9 +95,9 @@ position = Vector2( 0, -0.0431595 )
 anchor_mode = 0
 current = true
 
-[node name="HUDLayer" type="Node2D" parent="."]
+[node name="UILayer" type="Node2D" parent="."]
 
-[node name="Background" type="ColorRect" parent="HUDLayer"]
+[node name="Background" type="ColorRect" parent="UILayer"]
 margin_top = -0.0431595
 margin_right = 400.0
 margin_bottom = 79.9568
@@ -108,7 +108,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HUD" type="Control" parent="HUDLayer" groups=[
+[node name="HUD" type="Control" parent="UILayer" groups=[
 "GameOver",
 "Score",
 ]]
@@ -121,7 +121,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Score" type="Label" parent="HUDLayer/HUD"]
+[node name="Score" type="Label" parent="UILayer/HUD"]
 margin_left = 5.0
 margin_right = 38.0
 margin_bottom = 88.0
@@ -130,7 +130,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Time" type="Label" parent="HUDLayer/HUD"]
+[node name="Time" type="Label" parent="UILayer/HUD"]
 margin_left = 250.0
 margin_right = 396.0
 margin_bottom = 88.0
@@ -140,21 +140,55 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Results" type="PanelContainer" parent="UILayer"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.388235 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 400.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/Results"]
+margin_right = 400.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Restart" type="Button" parent="UILayer/Results/VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 298.0
+size_flags_vertical = 3
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="UILayer/Results/VBoxContainer"]
+margin_top = 302.0
+margin_right = 400.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+text = "Main Menu"
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 37.418, 261.957 )
 
 [node name="DestroyLine" type="Area2D" parent="."]
 position = Vector2( -50, 266.549 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 31
+collision_mask = 31
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyLine"]
 shape = SubResource( 2 )
 
 [node name="ScoreLine" type="Area2D" parent="."]
 position = Vector2( 67, 266.549 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 31
+collision_mask = 31
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreLine"]
 position = Vector2( -65.9265, -1.78174 )
@@ -165,42 +199,8 @@ shape = SubResource( 2 )
 ]]
 position = Vector2( 500, -0.043 )
 script = ExtResource( 6 )
-
-[node name="Results" type="PanelContainer" parent="."]
-visible = false
-self_modulate = Color( 1, 1, 1, 0.388235 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 112.0
-margin_bottom = 86.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Results"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 105.0
-margin_bottom = 79.0
-alignment = 1
-
-[node name="Restart" type="Button" parent="Results/VBoxContainer"]
-margin_right = 98.0
-margin_bottom = 34.0
-size_flags_vertical = 3
-text = "Restart"
-
-[node name="MainMenu" type="Button" parent="Results/VBoxContainer"]
-margin_top = 38.0
-margin_right = 98.0
-margin_bottom = 72.0
-size_flags_vertical = 3
-text = "Main Menu"
+[connection signal="pressed" from="UILayer/Results/VBoxContainer/Restart" to="." method="restart"]
+[connection signal="pressed" from="UILayer/Results/VBoxContainer/MainMenu" to="." method="goto_mainmenu"]
 [connection signal="body_exited" from="DestroyLine" to="." method="_on_DestroyLine_body_exited"]
 [connection signal="body_exited" from="DestroyLine" to="EnemySpawn" method="_on_DestroyLine_body_exited"]
 [connection signal="body_exited" from="ScoreLine" to="." method="_PlayerLine_body_exited"]
-[connection signal="pressed" from="Results/VBoxContainer/Restart" to="." method="restart"]
-[connection signal="pressed" from="Results/VBoxContainer/MainMenu" to="." method="goto_mainmenu"]

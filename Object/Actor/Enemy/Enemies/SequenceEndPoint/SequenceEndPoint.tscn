@@ -14,7 +14,7 @@ animations = [ {
 } ]
 
 [node name="EndPoint" instance=ExtResource( 1 )]
-collision_layer = 2
+collision_layer = 4
 script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]

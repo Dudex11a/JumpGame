@@ -16,7 +16,6 @@ animations = [ {
 [node name="Bounce" instance=ExtResource( 1 )]
 collision_mask = 2
 script = ExtResource( 2 )
-base_gravity = 1.0
 
 [node name="Sprite" parent="." index="0"]
 frames = SubResource( 1 )

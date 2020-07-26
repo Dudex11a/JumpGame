@@ -51,6 +51,7 @@ config/icon="res://icon.png"
 [autoload]
 
 G="*res://Object/General.gd"
+S="*res://Object/Save.gd"
 
 [display]
 

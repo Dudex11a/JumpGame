@@ -14,9 +14,9 @@ animations = [ {
 } ]
 
 [node name="Enemy" groups=[
-"ChangeModSpeed",
 "GameOver",
 "PlayerCollision",
+"PlayerDeath",
 ] instance=ExtResource( 2 )]
 position = Vector2( -1, 0 )
 script = ExtResource( 1 )

@@ -116,3 +116,4 @@ func is_game_over() -> bool:
 	if get_main():
 		return get_main().is_game_over
 	return true
+

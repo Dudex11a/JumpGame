@@ -70,6 +70,7 @@ func death():
 	self.active = false
 	death_anim.stop(true)
 	death_anim.play("Death")
+	get_tree().call_group("PlayerDeath", "player_death")
 	yield(death_anim, "animation_finished")
 	get_tree().call_group("GameOver", "game_over")
 

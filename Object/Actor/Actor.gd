@@ -15,10 +15,10 @@ func _physics_process(delta):
 	# Apply gravity if there is gravity
 	if gravity != 0:
 		var final_gravity: float = gravity * 100
-		
+
 		if rising:
 			velocity.y -= final_gravity * 3
-			
+
 		velocity.y += final_gravity
 	
 	# Multiply speed so it doesn't use super big numbers
