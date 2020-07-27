@@ -14,6 +14,13 @@ const difficulty_name = [
 
 var rng := RandomNumberGenerator.new()
 
+var A: Audio
+
+func _ready():
+	var audio = G.make_node("res://Object/Audio.tscn")
+	A = audio
+	get_node("/root/G").add_child(A)
+
 func change_scene(scene):
 	var viewport := get_viewport()
 	
@@ -116,4 +123,3 @@ func is_game_over() -> bool:
 	if get_main():
 		return get_main().is_game_over
 	return true
-

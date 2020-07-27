@@ -14,10 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Object/Actor/Actor.gd"
 }, {
+"base": "Node",
+"class": "Audio",
+"language": "GDScript",
+"path": "res://Object/Audio.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Collision",
 "language": "GDScript",
 "path": "res://Object/Collision/Collision.gd"
+}, {
+"base": "Button",
+"class": "DButton",
+"language": "GDScript",
+"path": "res://Object/UI/DButton/DButton.gd"
 }, {
 "base": "Enemy",
 "class": "EndPoint",
@@ -36,7 +46,9 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
+"Audio": "",
 "Collision": "",
+"DButton": "",
 "EndPoint": "",
 "Enemy": "",
 "Sequence": ""

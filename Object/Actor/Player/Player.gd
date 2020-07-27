@@ -2,6 +2,8 @@ extends Actor
 func get_class(): return "Player"
 
 onready var death_anim := $DeathAnimPlayer
+onready var se := $SE
+onready var se_thruster := $SEThruster
 
 var score := 0 setget set_score
 
@@ -36,10 +38,25 @@ func _input(event):
 	if event.is_action_pressed("jump"):
 		rising = true
 		emit_signal("jump")
+		# Play Sound
+		se.pitch_scale = G.rng.randf_range(0.8, 1.2)
+		se.play()
+		play_thruster()
+		
 	if event.is_action_released("jump"):
 		rising = false
 	if event.is_action_released("return"):
 		G.change_to_main_menu()
+
+const loop_start := .037
+const loop_end := .147
+func play_thruster():
+	if not se_thruster.playing:
+		se_thruster.play()
+	if rising and active:
+		se_thruster.play(loop_start)
+		yield(get_tree().create_timer(loop_end - loop_start), "timeout")
+		play_thruster()
 
 func set_score(new_score: int):
 	score = new_score

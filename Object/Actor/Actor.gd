@@ -37,3 +37,4 @@ func collision(collision: KinematicCollision2D):
 func set_active(value: bool):
 	active = value
 	set_physics_process(value)
+	set_process_input(value)

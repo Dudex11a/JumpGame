@@ -2,8 +2,8 @@ extends Node2D
 
 onready var player := $Player
 onready var ui
-onready var hud := $UILayer/HUD
-onready var results := $UILayer/Results
+onready var hud := $HUDLayer/HUD
+onready var results_layer := $ResultsLayer
 onready var enemy_spawn := $EnemySpawn
 onready var clouds: Array = [
 	$Collision/CollisionBottom/Clouds,
@@ -22,21 +22,16 @@ var is_game_over := false
 
 func _ready():
 	hud.rect_size = get_viewport_rect().size
-	results.rect_size = get_viewport_rect().size
 	hud.start_time = start_time
-
-func _process(delta):
-	advance_clouds(clouds, 1)
-	advance_clouds(clouds2, -2)
 
 func lose():
 	G.change_to_main_menu()
 
 func game_over():
 	# Show results
-	results.visible = true
+	results_layer.visible = true
 	# Display HUD over UI
-	$UILayer.z_index = 2
+	$HUDLayer.z_index = 2
 	S.currency += player.score
 	if S.high_score < player.score:
 		S.high_score = player.score
@@ -57,7 +52,3 @@ func restart():
 
 func goto_mainmenu():
 	G.change_to_main_menu()
-
-func advance_clouds(clouds: Array, speed: float):
-	for cloud in clouds:
-		cloud.region_rect.position.x += speed

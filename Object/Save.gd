@@ -7,8 +7,21 @@ func _init():
 
 var _file := File.new()
 
-var high_score := 0
-var currency := 0
+var high_score := 0 setget set_high_score
+var currency := 0 setget set_currency
+
+signal set_property
+func set_high_score(value: int):
+	high_score = value
+	emit_signal("set_property")
+	
+func set_currency(value: int):
+	currency = value
+	emit_signal("set_property")
+
+func _ready():
+	# Connect when certen properties are changed call group function set_property
+	connect("set_property", get_tree(), "call_group", ["Globals", "set_property"])
 
 func get_property_names() -> Array:
 	var properties := []
