@@ -4,6 +4,13 @@ func get_class(): return "Player"
 onready var death_anim := $DeathAnimPlayer
 onready var se := $SE
 onready var se_thruster := $SEThruster
+onready var thruster := $Thruster
+onready var hat_spot := sprite.get_node("HatSpot")
+
+onready var eye := $Sprite/Eye
+onready var mouth := $Sprite/Mouth
+onready var front_legs := $Sprite/FrontLegs
+onready var tail := $Sprite/Tail
 
 var score := 0 setget set_score
 
@@ -17,22 +24,12 @@ func _ready():
 	# but when you jump gravity kicks on
 	connect("jump", self, "first_jump")
 	gravity = 0
+	change_hat(S.hat)
 
-func _process(delta):
+func _physics_process(delta):
 	# If is not in death anim
 	if not (death_anim.is_playing() and death_anim.current_animation == "Death"):
 		tilt_by_velocity()
-
-func tilt_by_velocity():
-	var tilt := clamp(velocity.y, -500, 500) / 1000
-	if is_on_floor():
-		tilt = 0
-	sprite.rotation = tilt
-
-# Set the gravity and disconnect the signal so it won't be called again
-func first_jump():
-	gravity = base_gravity
-	disconnect("jump", self, "first_jump")
 
 func _input(event):
 	if event.is_action_pressed("jump"):
@@ -41,22 +38,34 @@ func _input(event):
 		# Play Sound
 		se.pitch_scale = G.rng.randf_range(0.8, 1.2)
 		se.play()
-		play_thruster()
+		se_thruster.play()
+		thruster.emitting = true
+		play_anim_sprite(mouth)
 		
 	if event.is_action_released("jump"):
 		rising = false
+		se_thruster.stop()
+		thruster.emitting = false
 	if event.is_action_released("return"):
 		G.change_to_main_menu()
+		
+func tilt_by_velocity():
+	var tilt := clamp(velocity.y, -500, 500) / 1000
+	if is_on_floor():
+		tilt = 0
+	sprite.rotation = tilt
+	
+# Set the gravity and disconnect the signal so it won't be called again
+func first_jump():
+	gravity = base_gravity
+	disconnect("jump", self, "first_jump")
 
-const loop_start := .037
-const loop_end := .147
-func play_thruster():
-	if not se_thruster.playing:
-		se_thruster.play()
-	if rising and active:
-		se_thruster.play(loop_start)
-		yield(get_tree().create_timer(loop_end - loop_start), "timeout")
-		play_thruster()
+func play_anim_sprite(sprite: AnimatedSprite):
+	sprite.frame = 0
+	sprite.play("default")
+
+func blink():
+	play_anim_sprite(eye)
 
 func set_score(new_score: int):
 	score = new_score
@@ -85,6 +94,9 @@ func last_check():
 
 func death():
 	self.active = false
+	thruster.emitting = false
+	G.A.play_sound(load("res://Sound/Chaos.wav"), 1)
+	se_thruster.stop()
 	death_anim.stop(true)
 	death_anim.play("Death")
 	get_tree().call_group("PlayerDeath", "player_death")
@@ -94,4 +106,19 @@ func death():
 func detected(body):
 	if body is Enemy:
 		death()
-		get_tree().call_group("PlayerCollision", "player_collision", body)
+
+func change_hat(hat_name := ""):
+	# Remove old hat
+	for child in hat_spot.get_children():
+		child.free()
+	
+	# Take off hat if empty
+	if hat_name == "":
+		return
+		
+	hat_spot.add_child(make_basic_hat(hat_name))
+
+func make_basic_hat(hat_name: String) -> AnimatedSprite:
+	var hat = G.make_node(P.hat_obj)
+	hat.make_basic(hat_name)
+	return hat

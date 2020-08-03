@@ -10,3 +10,6 @@ bus = "Music"
 
 [node name="Menu" type="AudioStreamPlayer" parent="."]
 bus = "Menu"
+
+[node name="Menu2" type="AudioStreamPlayer" parent="."]
+bus = "Menu"

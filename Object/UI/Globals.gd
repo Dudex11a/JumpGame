@@ -20,3 +20,7 @@ func set_property():
 func animate_coin_amount(percent: float):
 	var anim_coin_amount = int(previous_currency + (new_currency - previous_currency) * percent)
 	coin_amount.text = String(anim_coin_amount)
+
+
+func goto_tab(extra_arg_0):
+	pass # Replace with function body.

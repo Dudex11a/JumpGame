@@ -38,7 +38,6 @@ tracks/0/keys = {
 
 [node name="Main" type="Node2D" groups=[
 "GameOver",
-"PlayerCollision",
 "Score",
 ]]
 script = ExtResource( 5 )
@@ -50,40 +49,8 @@ z_index = -1
 [node name="CollisionBottom" parent="Collision" instance=ExtResource( 2 )]
 position = Vector2( 292.449, 796.712 )
 
-[node name="Clouds2" type="Sprite" parent="Collision/CollisionBottom"]
-material = ExtResource( 12 )
-position = Vector2( -92.449, -169.704 )
-texture = ExtResource( 1 )
-flip_h = true
-region_enabled = true
-region_rect = Rect2( 0, 0, 400, 250 )
-
-[node name="Clouds" type="Sprite" parent="Collision/CollisionBottom"]
-material = ExtResource( 11 )
-position = Vector2( -92.449, -130.06 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 400, 250 )
-
 [node name="CollisionTop" parent="Collision" instance=ExtResource( 2 )]
 position = Vector2( 250.449, -200.66 )
-
-[node name="Clouds2" type="Sprite" parent="Collision/CollisionTop"]
-material = ExtResource( 12 )
-position = Vector2( -50.4493, 293.69 )
-texture = ExtResource( 1 )
-flip_h = true
-flip_v = true
-region_enabled = true
-region_rect = Rect2( 0, 0, 400, 250 )
-
-[node name="Clouds" type="Sprite" parent="Collision/CollisionTop"]
-material = ExtResource( 11 )
-position = Vector2( -50.4493, 261.598 )
-texture = ExtResource( 1 )
-flip_v = true
-region_enabled = true
-region_rect = Rect2( 0, 0, 400, 250 )
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 0, -0.0431595 )
@@ -108,12 +75,15 @@ position = Vector2( -65.9265, -1.78174 )
 shape = SubResource( 1 )
 
 [node name="EnemySpawn" type="Position2D" parent="." groups=[
-"PlayerCollision",
+"PlayerDeath",
+"TransitionDone",
 ]]
 position = Vector2( 500, -0.043 )
 script = ExtResource( 6 )
 
-[node name="Background" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="." groups=[
+"PlayerDeath",
+]]
 layer = -1
 script = ExtResource( 8 )
 
@@ -128,6 +98,41 @@ __meta__ = {
 
 [node name="BackgroundAnimation" type="AnimationPlayer" parent="Background"]
 anims/Background = SubResource( 2 )
+
+[node name="Clouds" type="Node2D" parent="Background"]
+modulate = Color( 1, 1, 1, 0.588235 )
+
+[node name="Clouds2" type="Sprite" parent="Background/Clouds"]
+material = ExtResource( 12 )
+position = Vector2( 200, 627.008 )
+texture = ExtResource( 1 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 400, 250 )
+
+[node name="Clouds" type="Sprite" parent="Background/Clouds"]
+material = ExtResource( 11 )
+position = Vector2( 200, 666.652 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 400, 250 )
+
+[node name="Clouds3" type="Sprite" parent="Background/Clouds"]
+material = ExtResource( 12 )
+position = Vector2( 200, 93.03 )
+texture = ExtResource( 1 )
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 400, 250 )
+
+[node name="Clouds4" type="Sprite" parent="Background/Clouds"]
+material = ExtResource( 11 )
+position = Vector2( 200, 60.938 )
+texture = ExtResource( 1 )
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 400, 250 )
 
 [node name="HUDLayer" type="Node2D" parent="."]
 

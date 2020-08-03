@@ -17,14 +17,8 @@ onready var difficulty: int = get_parent().difficulty
 # Once the value reaches this value the difficulty increases
 const difficulty_up := 5
 
-func _ready():
-	yield(get_tree().create_timer(1.0), "timeout")
+func transition_done():
 	spawn_random_sequence()
-
-#func make_sequence(file: String, folder: String) -> Node2D:
-#	var path := sequence_path + folder + "/"
-#	var sequence_resource := load(path + file)
-#	return sequence_resource.instance()
 
 func spawn_random_sequence():
 	add_difficulty()
@@ -59,7 +53,7 @@ func add_difficulty():
 #	sequence.position = spawn_point
 #	get_parent().add_child(sequence)
 
-func player_collision(collider):
+func player_death():
 	active = false
 
 func _on_DestroyLine_body_exited(body):

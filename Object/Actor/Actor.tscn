@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Object/Actor/Actor.gd" type="Script" id=1]
-[ext_resource path="res://Object/Actor/Dog.png" type="Texture" id=2]
+[ext_resource path="res://Image/Dog.png" type="Texture" id=2]
 
 [sub_resource type="SpriteFrames" id=1]
 resource_local_to_scene = true
@@ -13,7 +13,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32.2794, 25.0216 )
+extents = Vector2( 28, 25.022 )
 
 [node name="Actor" type="KinematicBody2D"]
 collision_mask = 0

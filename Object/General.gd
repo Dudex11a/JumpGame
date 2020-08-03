@@ -81,9 +81,28 @@ func get_files(path: String):
 		print("An error occurred when trying to access the path.")
 	return files
 
+func load_txt(file):
+	var text: String
+	var f = File.new()
+	f.open(file, File.READ)
+	var index = 0
+	while not f.eof_reached(): # iterate through all lines until the end of file is reached
+		var line = f.get_line()
+		line += "\n"
+		text += line
+		
+		index += 1
+	f.close()
+	return text
+
 func make_node(path: String) -> Node:
 	var resource = load(path)
 	return resource.instance()
+
+func path_to_name(path: String) -> String:
+	var rgx := RegEx.new()
+	rgx.compile("res://(\\S|\\s)*/|\\.(\\S|\\s)*")
+	return rgx.sub(path, "", true)
 
 func random_in_array(array: Array):
 	return array[G.rng.randi_range(1, array.size()) - 1]

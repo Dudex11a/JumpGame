@@ -5,14 +5,6 @@ onready var ui
 onready var hud := $HUDLayer/HUD
 onready var results_layer := $ResultsLayer
 onready var enemy_spawn := $EnemySpawn
-onready var clouds: Array = [
-	$Collision/CollisionBottom/Clouds,
-	$Collision/CollisionTop/Clouds
-]
-onready var clouds2: Array = [
-	$Collision/CollisionBottom/Clouds2,
-	$Collision/CollisionTop/Clouds2
-]
 
 onready var start_time := OS.get_ticks_msec()
 

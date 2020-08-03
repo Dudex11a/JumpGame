@@ -9,8 +9,12 @@ var _file := File.new()
 
 var high_score := 0 setget set_high_score
 var currency := 0 setget set_currency
+var hat := ""
 
 signal set_property
+
+signal game_saved
+
 func set_high_score(value: int):
 	high_score = value
 	emit_signal("set_property")
@@ -69,5 +73,6 @@ func load_game():
 	# that if I add new data to the save it will have that
 	# new data.
 	for name in get_property_names():
-		self[name] = data[name]
+		if data.has(name):
+			self[name] = data[name]
 	_file.close()

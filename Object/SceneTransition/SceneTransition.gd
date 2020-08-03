@@ -38,8 +38,10 @@ func transition(anim: String = "TransitionIn"):
 			var tex = ImageTexture.new()
 			tex.create_from_image(img)
 			screne_capture.texture = tex
+			G.A.play_sound(load("res://Sound/TransitionIn.wav"), 1)
 		"TransitionOut":
 			screne_capture.texture = null
+			G.A.play_sound(load("res://Sound/TransitionOut.wav"), 1)
 	var anim_length := anim_player.get_animation(anim).length
 	var individual_length: float = anim_length / polygon_queue.size()
 	for poly in polygon_queue:
@@ -52,6 +54,7 @@ func transition_out():
 	transition("TransitionOut")
 	yield(self, "transition_end")
 	anim_player.stop(true)
+	get_tree().call_group("TransitionDone", "transition_done")
 	queue_free()
 
 func animation_finished(anim_name: String):

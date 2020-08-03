@@ -1,27 +1,44 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Object/Actor/Actor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Object/Actor/Player/Player.gd" type="Script" id=2]
-[ext_resource path="res://Object/Actor/Dog.png" type="Texture" id=3]
+[ext_resource path="res://Image/Dog/Body_1.png" type="Texture" id=3]
 [ext_resource path="res://Object/Actor/Player/Countdown/Numbers.tres" type="SpriteFrames" id=4]
 [ext_resource path="res://Object/Actor/Player/Countdown/CountdownPlayer.gd" type="Script" id=5]
 [ext_resource path="res://Sound/DogBark.wav" type="AudioStream" id=6]
 [ext_resource path="res://Sound/DogThruster.wav" type="AudioStream" id=7]
+[ext_resource path="res://Image/Thruster.png" type="Texture" id=8]
+[ext_resource path="res://Image/Dog/Eye_2.png" type="Texture" id=9]
+[ext_resource path="res://Image/Explosion.png" type="Texture" id=10]
+[ext_resource path="res://Image/Dog/Mouth_2.png" type="Texture" id=11]
+[ext_resource path="res://Image/Dog/Mouth_3.png" type="Texture" id=12]
+[ext_resource path="res://Image/Dog/Eye_3.png" type="Texture" id=13]
+[ext_resource path="res://Image/Dog/Mouth_1.png" type="Texture" id=14]
+[ext_resource path="res://Image/Dog/Eye_1.png" type="Texture" id=15]
+[ext_resource path="res://Image/Dog/FrontRightLeg_1.png" type="Texture" id=16]
+[ext_resource path="res://Image/Dog/FrontLeftLeg_1.png" type="Texture" id=17]
+[ext_resource path="res://Image/Dog/Tail_1.png" type="Texture" id=18]
 
 [sub_resource type="SpriteFrames" id=1]
-resource_local_to_scene = true
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
+"frames": [ ExtResource( 15 ), ExtResource( 9 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 15 ) ],
+"loop": false,
 "name": "default",
-"speed": 5.0
+"speed": 20.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 14 ) ],
+"loop": false,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 33.9551, 26.2108 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "CollisionCountdown"
+[sub_resource type="Animation" id=4]
 length = 4.5
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -85,8 +102,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Death"
+[sub_resource type="Animation" id=5]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
@@ -112,8 +128,32 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 0.0, 2880.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DeathParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("CountdownSprite:rotation_degrees")
 tracks/0/interp = 2
@@ -151,6 +191,57 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 0.1 ), Vector2( 1, 1 ), Vector2( 1.5, 1.2 ) ]
 }
 
+[sub_resource type="Animation" id=7]
+resource_name = "Idle"
+length = 20.0
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.9, 9.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "blink"
+}, {
+"args": [  ],
+"method": "blink"
+}, {
+"args": [  ],
+"method": "blink"
+} ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=8]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id=9]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, -18 ), 0.0, 344.727, 0, 0, Vector2( 1, 152.182 ), 139.217, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0.6, 0.992593, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.92549, 1, 1, 1, 0.100597, 1, 1, 1, 0 )
+
+[sub_resource type="CanvasItemMaterial" id=11]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id=12]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, -360 ), 0.0, 713.033, 0, 0, Vector2( 1, 360 ), 711.406, 0.0, 0, 0 ]
+
 [node name="Player" groups=[
 "GameOver",
 "Player",
@@ -160,35 +251,108 @@ script = ExtResource( 2 )
 base_gravity = 1.0
 
 [node name="Sprite" parent="." index="0"]
+rotation = 50.2655
 z_index = 1
 z_as_relative = false
+frames = null
+
+[node name="Body" type="Sprite" parent="Sprite" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Eye" type="AnimatedSprite" parent="Sprite" index="1"]
 frames = SubResource( 1 )
+frame = 4
+
+[node name="Mouth" type="AnimatedSprite" parent="Sprite" index="2"]
+frames = SubResource( 2 )
+
+[node name="FrontLegs" type="Position2D" parent="Sprite" index="3"]
+position = Vector2( 8, 8 )
+
+[node name="Left" type="Sprite" parent="Sprite/FrontLegs" index="0"]
+position = Vector2( -8, -8 )
+z_index = -1
+texture = ExtResource( 17 )
+
+[node name="Right" type="Sprite" parent="Sprite/FrontLegs" index="1"]
+position = Vector2( -8, -8 )
+texture = ExtResource( 16 )
+
+[node name="Tail" type="Position2D" parent="Sprite" index="4"]
+position = Vector2( -14, -3 )
+
+[node name="Tail" type="Sprite" parent="Sprite/Tail" index="0"]
+position = Vector2( 14, 3 )
+texture = ExtResource( 18 )
+
+[node name="HatSpot" type="Position2D" parent="Sprite" index="5"]
+position = Vector2( 20, -16 )
 
 [node name="CountdownSprite" type="AnimatedSprite" parent="." index="1"]
 visible = false
 modulate = Color( 1, 1, 1, 0 )
-scale = Vector2( 1.5, 1.2 )
+rotation = -4.71239
+scale = Vector2( 1, 0.1 )
 z_index = 1
 frames = ExtResource( 4 )
 
 [node name="Detect" type="Area2D" parent="." index="3"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detect" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="DeathAnimPlayer" type="AnimationPlayer" parent="." index="4"]
-anims/CollisionCountdown = SubResource( 3 )
-anims/Death = SubResource( 4 )
+anims/CollisionCountdown = SubResource( 4 )
+anims/Death = SubResource( 5 )
 
 [node name="CountdownPlayer" type="AnimationPlayer" parent="." index="5"]
-anims/Countdown = SubResource( 5 )
+anims/Countdown = SubResource( 6 )
 script = ExtResource( 5 )
 
-[node name="SE" type="AudioStreamPlayer" parent="." index="6"]
+[node name="IdlePlayer" type="AnimationPlayer" parent="." index="6"]
+autoplay = "Idle"
+anims/Idle = SubResource( 7 )
+
+[node name="SE" type="AudioStreamPlayer" parent="." index="7"]
 stream = ExtResource( 6 )
 bus = "Sound"
 
-[node name="SEThruster" type="AudioStreamPlayer" parent="." index="7"]
+[node name="SEThruster" type="AudioStreamPlayer" parent="." index="8"]
 stream = ExtResource( 7 )
 bus = "Sound"
+
+[node name="Thruster" type="CPUParticles2D" parent="." index="9"]
+material = SubResource( 8 )
+position = Vector2( 3.92032, 7.87869 )
+emitting = false
+amount = 13
+lifetime = 0.5
+lifetime_randomness = 0.2
+local_coords = false
+texture = ExtResource( 8 )
+direction = Vector2( -1, 1 )
+spread = 65.69
+gravity = Vector2( 0, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 0.2
+tangential_accel = 66.67
+angle_random = 0.57
+angle_curve = SubResource( 9 )
+color_ramp = SubResource( 10 )
+anim_speed = 2.0
+anim_offset_random = 1.0
+
+[node name="DeathParticles" type="CPUParticles2D" parent="." index="10"]
+material = SubResource( 11 )
+emitting = false
+amount = 40
+lifetime = 0.6
+explosiveness = 0.08
+local_coords = false
+texture = ExtResource( 10 )
+spread = 180.0
+initial_velocity = 1000.0
+angle_random = 1.0
+angle_curve = SubResource( 12 )
+anim_speed = 4.0
 [connection signal="body_entered" from="Detect" to="." method="detected"]
