@@ -17,7 +17,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Audio",
 "language": "GDScript",
-"path": "res://Object/Audio.gd"
+"path": "res://Object/OnLoad/Audio.gd"
+}, {
+"base": "DButton",
+"class": "BuyHat",
+"language": "GDScript",
+"path": "res://Object/UI/DButton/BuyHat/BuyHat.gd"
 }, {
 "base": "StaticBody2D",
 "class": "Collision",
@@ -52,6 +57,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Actor": "",
 "Audio": "",
+"BuyHat": "",
 "Collision": "",
 "DButton": "",
 "EndPoint": "",
@@ -63,14 +69,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Jump Game"
-run/main_scene="res://Object/UI/MainMenu.tscn"
+run/main_scene="res://Object/UI/MainMenu/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-G="*res://Object/General.gd"
-S="*res://Object/Save.gd"
-P="*res://Object/Paths.gd"
+G="*res://Object/OnLoad/General.gd"
+S="*res://Object/OnLoad/Save.gd"
+P="*res://Object/OnLoad/Paths.gd"
 
 [display]
 

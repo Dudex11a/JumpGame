@@ -10,22 +10,28 @@ var _file := File.new()
 var high_score := 0 setget set_high_score
 var currency := 0 setget set_currency
 var hat := ""
+var hat_color: Array = [1, .5, 1]
+var dog_color: Array = [1, .5, 1]
+var obtained_hats := []
 
 signal set_property
 
 signal game_saved
+
+func _ready():
+	# Connect when certen properties are changed call group function set_property
+	connect("set_property", get_tree(), "call_group", ["Globals", "set_property"])
 
 func set_high_score(value: int):
 	high_score = value
 	emit_signal("set_property")
 	
 func set_currency(value: int):
+	# Play purchase sound, the "if P" is here because P can be null on startup
+	if P and currency < value:
+		G.A.play_sound(load(P.currency_sound), 1)
 	currency = value
 	emit_signal("set_property")
-
-func _ready():
-	# Connect when certen properties are changed call group function set_property
-	connect("set_property", get_tree(), "call_group", ["Globals", "set_property"])
 
 func get_property_names() -> Array:
 	var properties := []
@@ -37,6 +43,12 @@ func get_property_names() -> Array:
 		if property.usage == 8192 and property.name[0] != "_":
 			properties.append(property.name)
 	return properties
+
+func add_hat(hat: String) -> bool:
+	if not obtained_hats.has(hat):
+		obtained_hats.append(hat)
+		return true
+	return false
 
 func _to_string() -> String:
 	var data := {}
@@ -74,5 +86,20 @@ func load_game():
 	# new data.
 	for name in get_property_names():
 		if data.has(name):
-			self[name] = data[name]
+			# If type mismatch
+#			if typeof(self[name]) != typeof(data[name]):
+#				print(name)
+			# Handle colors
+			if self[name] is Color:
+				var d = data[name]
+				# Turn color string to float
+				self[name] = Color(
+					float(d[0]),
+					float(d[2]),
+					float(d[4]),
+					float(d[6])
+					)
+			else:
+				# Handle all other data
+				self[name] = data[name]
 	_file.close()

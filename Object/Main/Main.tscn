@@ -4,18 +4,18 @@
 [ext_resource path="res://Object/Collision/Collision.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Object/Actor/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Theme/HUD/HUD.tres" type="Theme" id=4]
-[ext_resource path="res://Object/Main.gd" type="Script" id=5]
-[ext_resource path="res://Object/EnemySpawn.gd" type="Script" id=6]
-[ext_resource path="res://Object/HUD.gd" type="Script" id=7]
-[ext_resource path="res://Object/Background.gd" type="Script" id=8]
+[ext_resource path="res://Object/Main/Main.gd" type="Script" id=5]
+[ext_resource path="res://Object/Main/EnemySpawn.gd" type="Script" id=6]
+[ext_resource path="res://Object/Main/HUD.gd" type="Script" id=7]
+[ext_resource path="res://Object/Main/Background.gd" type="Script" id=8]
 [ext_resource path="res://Theme/Title/Title.tres" type="Theme" id=9]
-[ext_resource path="res://Object/UI/Globals.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Image/ScrollingMat.tres" type="Material" id=11]
-[ext_resource path="res://Image/ScrollingMatReverse.tres" type="Material" id=12]
+[ext_resource path="res://Object/OnLoad/Globals.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Shader/ScrollingMat.tres" type="Material" id=11]
+[ext_resource path="res://Shader/ScrollingMatReverse.tres" type="Material" id=12]
 [ext_resource path="res://Sound/PressOut.wav" type="AudioStream" id=13]
 [ext_resource path="res://Object/UI/DButton/DButton.gd" type="Script" id=14]
 [ext_resource path="res://Sound/PressDown.wav" type="AudioStream" id=15]
-[ext_resource path="res://Image/SkyMat.tres" type="Material" id=16]
+[ext_resource path="res://Shader/SkyMat.tres" type="Material" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 347.933 )
@@ -47,7 +47,7 @@ modulate = Color( 1, 1, 1, 0.305882 )
 z_index = -1
 
 [node name="CollisionBottom" parent="Collision" instance=ExtResource( 2 )]
-position = Vector2( 292.449, 796.712 )
+position = Vector2( 200, 800 )
 
 [node name="CollisionTop" parent="Collision" instance=ExtResource( 2 )]
 position = Vector2( 250.449, -200.66 )
@@ -199,18 +199,22 @@ __meta__ = {
 }
 
 [node name="Background" type="ColorRect" parent="ResultsLayer/Results"]
-margin_right = 400.0
-margin_bottom = 440.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 398.0
+margin_bottom = 438.0
 color = Color( 0, 0, 0, 0.784314 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ResultsLayer/Results"]
-margin_right = 400.0
-margin_bottom = 440.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 398.0
+margin_bottom = 438.0
 alignment = 1
 
 [node name="Restart" type="Button" parent="ResultsLayer/Results/VBoxContainer"]
-margin_right = 400.0
-margin_bottom = 218.0
+margin_right = 396.0
+margin_bottom = 216.0
 size_flags_vertical = 3
 text = "Restart"
 script = ExtResource( 14 )
@@ -218,9 +222,9 @@ press_down_sound = ExtResource( 15 )
 press_up_sound = ExtResource( 13 )
 
 [node name="MainMenu" type="Button" parent="ResultsLayer/Results/VBoxContainer"]
-margin_top = 222.0
-margin_right = 400.0
-margin_bottom = 440.0
+margin_top = 220.0
+margin_right = 396.0
+margin_bottom = 436.0
 size_flags_vertical = 3
 text = "Main Menu"
 script = ExtResource( 14 )
@@ -228,10 +232,9 @@ press_down_sound = ExtResource( 15 )
 press_up_sound = ExtResource( 13 )
 
 [node name="Globals" parent="ResultsLayer" instance=ExtResource( 10 )]
-anchor_right = 0.0
 margin_top = 520.0
 margin_right = 400.0
-margin_bottom = 1120.0
+margin_bottom = 600.0
 [connection signal="body_exited" from="DestroyLine" to="EnemySpawn" method="_on_DestroyLine_body_exited"]
 [connection signal="body_exited" from="DestroyLine" to="." method="_on_DestroyLine_body_exited"]
 [connection signal="body_exited" from="ScoreLine" to="." method="_PlayerLine_body_exited"]

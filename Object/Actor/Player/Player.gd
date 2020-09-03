@@ -7,10 +7,13 @@ onready var se_thruster := $SEThruster
 onready var thruster := $Thruster
 onready var hat_spot := sprite.get_node("HatSpot")
 
-onready var eye := $Sprite/Eye
-onready var mouth := $Sprite/Mouth
-onready var front_legs := $Sprite/FrontLegs
-onready var tail := $Sprite/Tail
+
+onready var dog_anims := sprite.get_node("DogAnims")
+onready var dog_sprite := sprite.get_node("Dog")
+onready var eye := dog_sprite.get_node("Eye")
+onready var mouth := dog_sprite.get_node("Mouth")
+onready var front_legs := dog_sprite.get_node("FrontLegs")
+onready var tail := dog_sprite.get_node("Tail")
 
 var score := 0 setget set_score
 
@@ -25,6 +28,7 @@ func _ready():
 	connect("jump", self, "first_jump")
 	gravity = 0
 	change_hat(S.hat)
+	change_hsv()
 
 func _physics_process(delta):
 	# If is not in death anim
@@ -41,11 +45,14 @@ func _input(event):
 		se_thruster.play()
 		thruster.emitting = true
 		play_anim_sprite(mouth)
+		dog_anims.play("Rising")
 		
 	if event.is_action_released("jump"):
 		rising = false
 		se_thruster.stop()
 		thruster.emitting = false
+		dog_anims.play_backwards("Rising")
+		
 	if event.is_action_released("return"):
 		G.change_to_main_menu()
 		
@@ -122,3 +129,7 @@ func make_basic_hat(hat_name: String) -> AnimatedSprite:
 	var hat = G.make_node(P.hat_obj)
 	hat.make_basic(hat_name)
 	return hat
+
+func change_hsv(dog: Array = S.dog_color, hat: Array = S.hat_color):
+	dog_sprite.material.set("shader_param/hsv", Vector3(dog[0], dog[1], dog[2]))
+	hat_spot.material.set("shader_param/hsv", Vector3(hat[0], hat[1], hat[2]))

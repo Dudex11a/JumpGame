@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Object/UI/DButton/DButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Object/UI/DButton/BuyHat/BuyHat.gd" type="Script" id=2]
+[ext_resource path="res://Theme/Font/H2.tres" type="DynamicFont" id=3]
+
+[node name="BuyHat" instance=ExtResource( 1 )]
+anchor_right = 0.499
+anchor_bottom = 0.101
+margin_right = 0.400009
+margin_bottom = -0.599998
+size_flags_horizontal = 3
+align = 0
+script = ExtResource( 2 )
+
+[node name="Container" type="HBoxContainer" parent="." index="0"]
+anchor_left = 0.039
+anchor_right = 0.953
+anchor_bottom = 1.0
+margin_left = 0.249999
+margin_right = -0.250031
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="Container" index="0"]
+margin_right = 144.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 3 )
+text = "Hat"
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator" type="VSeparator" parent="Container" index="1"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 148.0
+margin_right = 152.0
+margin_bottom = 60.0
+
+[node name="Cost" type="Label" parent="Container" index="2"]
+margin_left = 156.0
+margin_right = 182.0
+margin_bottom = 60.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 3 )
+text = "00"
+align = 2
+valign = 1

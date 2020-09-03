@@ -1,0 +1,506 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Theme/Font/P.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Shader/ScrollingMat.tres" type="Material" id=2]
+[ext_resource path="res://Theme/Title/TitleContainer.tres" type="StyleBox" id=3]
+[ext_resource path="res://Theme/Title/Title.tres" type="Theme" id=4]
+[ext_resource path="res://Image/Clouds.png" type="Texture" id=5]
+[ext_resource path="res://Sound/PressDown.wav" type="AudioStream" id=6]
+[ext_resource path="res://Object/UI/MainMenu/MainMenu.gd" type="Script" id=7]
+[ext_resource path="res://Object/Actor/Player/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Object/UI/MainMenu/Hats.gd" type="Script" id=9]
+[ext_resource path="res://Object/UI/DButton/DButton.gd" type="Script" id=10]
+[ext_resource path="res://Sound/PressOut.wav" type="AudioStream" id=11]
+[ext_resource path="res://Image/Title.png" type="Texture" id=12]
+[ext_resource path="res://Sound/PressUp.wav" type="AudioStream" id=13]
+[ext_resource path="res://Shader/SkyMat.tres" type="Material" id=14]
+[ext_resource path="res://Object/UI/DButton/DButton.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Object/OnLoad/Globals.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Object/UI/DColorPicker/DColorPicker.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Sound/Equip.wav" type="AudioStream" id=18]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+//void fragment() {
+//	COLOR = texture(TEXTURE, UV);
+//	COLOR.b = cos(TIME * 10.0);
+//}
+
+const float scroll_speed = 1.;
+
+void fragment() {
+	vec2 shifteduv = UV;
+	float x_offset = -.05;
+    shifteduv.x += (cos(TIME * 3.) / 20. * scroll_speed) + x_offset;
+    vec4 color = texture(TEXTURE, shifteduv);
+    COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[sub_resource type="Theme" id=3]
+PanelContainer/styles/panel = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 0.980392, 0.85098, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 1, 0.980392, 0.85098, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
+
+[sub_resource type="Animation" id=7]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainMenu/Start/Title:rect_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -10.0, 10.0, -10.0 ]
+}
+
+[node name="Root" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -400.0
+margin_bottom = -600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundColor" type="ColorRect" parent="Background"]
+material = ExtResource( 14 )
+margin_right = 400.0
+margin_bottom = 600.0
+color = Color( 0.666667, 0.992157, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Clouds1" type="Sprite" parent="Background"]
+material = ExtResource( 2 )
+position = Vector2( 59.4891, 571.236 )
+rotation = 0.722847
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 400, 250 )
+
+[node name="Clouds2" type="Sprite" parent="Background"]
+material = ExtResource( 2 )
+position = Vector2( 367.347, 570.889 )
+rotation = -0.774184
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 400, 250 )
+
+[node name="Clouds6" type="Sprite" parent="Background"]
+material = ExtResource( 2 )
+position = Vector2( 461.489, 308.032 )
+rotation = -1.58798
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 400, 250 )
+
+[node name="Clouds3" type="Sprite" parent="Background"]
+material = ExtResource( 2 )
+position = Vector2( 392.142, 49.5621 )
+rotation = -2.4219
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 400, 250 )
+
+[node name="Clouds4" type="Sprite" parent="Background"]
+material = ExtResource( 2 )
+position = Vector2( -7.06233, 37.1128 )
+rotation = 2.51335
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 400, 250 )
+
+[node name="Clouds5" type="Sprite" parent="Background"]
+material = ExtResource( 2 )
+position = Vector2( -70.226, 310.542 )
+rotation = 1.60541
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 400, 250 )
+
+[node name="Globals" parent="." instance=ExtResource( 16 )]
+anchor_top = 0.867
+anchor_bottom = 1.0
+margin_top = -0.200012
+margin_bottom = 0.0
+
+[node name="MainMenu" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+tabs_visible = false
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="VBoxContainer" parent="MainMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="Title" type="TextureRect" parent="MainMenu/Start"]
+material = SubResource( 2 )
+margin_top = 122.0
+margin_right = 400.0
+margin_bottom = 222.0
+rect_pivot_offset = Vector2( 200, 50 )
+texture = ExtResource( 12 )
+
+[node name="Start" type="Button" parent="MainMenu/Start"]
+margin_top = 226.0
+margin_right = 400.0
+margin_bottom = 286.0
+text = "Start"
+script = ExtResource( 10 )
+press_down_sound = ExtResource( 6 )
+press_up_sound = ExtResource( 13 )
+
+[node name="Hat" parent="MainMenu/Start" instance=ExtResource( 15 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 290.0
+margin_right = 400.0
+margin_bottom = 350.0
+text = "Hats"
+
+[node name="Credits" parent="MainMenu/Start" instance=ExtResource( 15 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 354.0
+margin_right = 400.0
+margin_bottom = 414.0
+text = "Credits"
+
+[node name="Exit" type="Button" parent="MainMenu/Start"]
+margin_top = 418.0
+margin_right = 400.0
+margin_bottom = 478.0
+text = "Exit"
+script = ExtResource( 10 )
+press_down_sound = ExtResource( 6 )
+press_up_sound = ExtResource( 11 )
+
+[node name="StartDifficulty" type="VBoxContainer" parent="MainMenu"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="TitleBox" type="PanelContainer" parent="MainMenu/StartDifficulty"]
+margin_top = 142.0
+margin_right = 400.0
+margin_bottom = 202.0
+theme = SubResource( 3 )
+
+[node name="Difficulty" type="Label" parent="MainMenu/StartDifficulty/TitleBox"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 398.0
+margin_bottom = 58.0
+text = "Difficulty"
+align = 1
+
+[node name="1" type="Button" parent="MainMenu/StartDifficulty"]
+margin_top = 206.0
+margin_right = 400.0
+margin_bottom = 266.0
+text = "1"
+script = ExtResource( 10 )
+press_down_sound = ExtResource( 6 )
+press_up_sound = ExtResource( 13 )
+
+[node name="2" type="Button" parent="MainMenu/StartDifficulty"]
+margin_top = 270.0
+margin_right = 400.0
+margin_bottom = 330.0
+text = "2"
+script = ExtResource( 10 )
+press_down_sound = ExtResource( 6 )
+press_up_sound = ExtResource( 13 )
+
+[node name="3" type="Button" parent="MainMenu/StartDifficulty"]
+margin_top = 334.0
+margin_right = 400.0
+margin_bottom = 394.0
+text = "3"
+script = ExtResource( 10 )
+press_down_sound = ExtResource( 6 )
+press_up_sound = ExtResource( 13 )
+
+[node name="Back" type="Button" parent="MainMenu/StartDifficulty"]
+margin_top = 398.0
+margin_right = 400.0
+margin_bottom = 458.0
+text = "Back"
+script = ExtResource( 10 )
+press_down_sound = ExtResource( 6 )
+press_up_sound = ExtResource( 11 )
+
+[node name="Hats" type="Control" parent="MainMenu"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 9 )
+
+[node name="Player" parent="MainMenu/Hats" instance=ExtResource( 8 )]
+position = Vector2( 300, 300 )
+scale = Vector2( 2, 2 )
+
+[node name="Back" parent="MainMenu/Hats" instance=ExtResource( 15 )]
+anchor_left = 0.5
+anchor_top = 0.867
+anchor_right = 0.995
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -0.200012
+margin_right = -3.05176e-05
+text = "Back"
+press_up_sound = ExtResource( 11 )
+
+[node name="Box1" type="TabContainer" parent="MainMenu/Hats"]
+anchor_right = 0.497
+anchor_bottom = 0.867
+margin_right = 2.2
+margin_bottom = -0.200012
+tabs_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hats" type="ScrollContainer" parent="MainMenu/Hats/Box1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hats" type="VBoxContainer" parent="MainMenu/Hats/Box1/Hats"]
+margin_right = 201.0
+margin_bottom = 520.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="None" parent="MainMenu/Hats/Box1/Hats/Hats" instance=ExtResource( 15 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 201.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+text = "None"
+
+[node name="ColorPicker" parent="MainMenu/Hats/Box1" instance=ExtResource( 17 )]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="Box2" type="TabContainer" parent="MainMenu/Hats"]
+anchor_left = 0.5
+anchor_top = 0.6
+anchor_right = 1.0
+anchor_bottom = 0.867
+margin_left = 1.52588e-05
+margin_top = 3.05176e-05
+margin_right = 3.05176e-05
+margin_bottom = -0.200012
+tabs_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Color" type="VBoxContainer" parent="MainMenu/Hats/Box2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HatColor" parent="MainMenu/Hats/Box2/Color" instance=ExtResource( 15 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 77.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+text = "Hat Color"
+
+[node name="DogColor" parent="MainMenu/Hats/Box2/Color" instance=ExtResource( 15 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 81.0
+margin_right = 200.0
+margin_bottom = 159.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+text = "Dog Color"
+
+[node name="Box3" type="TabContainer" parent="MainMenu/Hats"]
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.4
+tabs_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buy" type="VBoxContainer" parent="MainMenu/Hats/Box3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Buy" parent="MainMenu/Hats/Box3/Buy" instance=ExtResource( 15 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 58.0
+margin_right = 200.0
+margin_bottom = 118.0
+text = "Buy"
+
+[node name="Preview" parent="MainMenu/Hats/Box3/Buy" instance=ExtResource( 15 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 122.0
+margin_right = 200.0
+margin_bottom = 182.0
+toggle_mode = true
+text = "Preview"
+
+[node name="Equip" type="VBoxContainer" parent="MainMenu/Hats/Box3"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Equip" parent="MainMenu/Hats/Box3/Equip" instance=ExtResource( 15 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 90.0
+margin_right = 200.0
+margin_bottom = 150.0
+text = "Equip"
+press_up_sound = ExtResource( 18 )
+
+[node name="Credits" type="VBoxContainer" parent="MainMenu"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Container" type="PanelContainer" parent="MainMenu/Credits"]
+margin_right = 400.0
+margin_bottom = 536.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="RichTextLabel" parent="MainMenu/Credits/Container"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 398.0
+margin_bottom = 534.0
+focus_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+selection_enabled = true
+
+[node name="Back" parent="MainMenu/Credits" instance=ExtResource( 15 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 540.0
+margin_right = 400.0
+margin_bottom = 600.0
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = ExtResource( 3 )
+text = "Back"
+press_up_sound = ExtResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "TitleWobble"
+anims/TitleWobble = SubResource( 7 )
+[connection signal="tab_changed" from="MainMenu" to="MainMenu/Hats" method="mainmenu_tab_changed"]
+[connection signal="pressed" from="MainMenu/Start/Start" to="MainMenu" method="goto_tab" binds= [ 1 ]]
+[connection signal="pressed" from="MainMenu/Start/Hat" to="MainMenu" method="goto_tab" binds= [ 2 ]]
+[connection signal="pressed" from="MainMenu/Start/Credits" to="MainMenu" method="goto_tab" binds= [ 3 ]]
+[connection signal="pressed" from="MainMenu/Start/Exit" to="MainMenu" method="exit"]
+[connection signal="pressed" from="MainMenu/StartDifficulty/1" to="MainMenu" method="start" binds= [ 1 ]]
+[connection signal="pressed" from="MainMenu/StartDifficulty/2" to="MainMenu" method="start" binds= [ 2 ]]
+[connection signal="pressed" from="MainMenu/StartDifficulty/3" to="MainMenu" method="start" binds= [ 3 ]]
+[connection signal="pressed" from="MainMenu/StartDifficulty/Back" to="MainMenu" method="goto_tab" binds= [ 0 ]]
+[connection signal="pressed" from="MainMenu/Hats/Back" to="MainMenu" method="goto_tab" binds= [ 0 ]]
+[connection signal="values_changed" from="MainMenu/Hats/Box1/ColorPicker" to="MainMenu/Hats" method="color_picker_changed"]
+[connection signal="pressed" from="MainMenu/Hats/Box2/Color/HatColor" to="MainMenu/Hats" method="set_player_color" binds= [ 0 ]]
+[connection signal="pressed" from="MainMenu/Hats/Box2/Color/DogColor" to="MainMenu/Hats" method="set_player_color" binds= [ 1 ]]
+[connection signal="pressed" from="MainMenu/Hats/Box3/Buy/Buy" to="MainMenu/Hats" method="buy_hat"]
+[connection signal="pressed" from="MainMenu/Hats/Box3/Buy/Preview" to="MainMenu/Hats" method="preview_hat"]
+[connection signal="pressed" from="MainMenu/Hats/Box3/Equip/Equip" to="MainMenu/Hats" method="equip_hat"]
+[connection signal="pressed" from="MainMenu/Credits/Back" to="MainMenu" method="goto_tab" binds= [ 0 ]]
+[connection signal="animation_finished" from="AnimationPlayer" to="MainMenu" method="play_wobble"]

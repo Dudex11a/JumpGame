@@ -11,5 +11,6 @@ animations = [ {
 } ]
 
 [node name="Hat" type="AnimatedSprite"]
+use_parent_material = true
 frames = SubResource( 1 )
 script = ExtResource( 1 )

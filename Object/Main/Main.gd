@@ -40,7 +40,7 @@ func _on_DestroyLine_body_exited(body):
 		body.queue_free()
 
 func restart():
-	G.start_game()
+	G.start_game(difficulty)
 
 func goto_mainmenu():
 	G.change_to_main_menu()

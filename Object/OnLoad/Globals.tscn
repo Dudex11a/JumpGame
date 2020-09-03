@@ -1,0 +1,122 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Object/OnLoad/Globals.gd" type="Script" id=1]
+[ext_resource path="res://Image/Coin.png" type="Texture" id=2]
+[ext_resource path="res://Theme/HUD/HUD.tres" type="Theme" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "CoinSpin"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CoinImg:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:coin_anim_percent")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "CurrencyError"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("CoinAmount:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 58, -20 ), Vector2( 58, 20 ), Vector2( 58, -10 ), Vector2( 58, 10 ), Vector2( 58, -4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CoinAmount:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.996078, 0.0235294, 0.0235294, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CoinImg:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 8, 40 ), Vector2( 8, 0 ), Vector2( 8, 30 ), Vector2( 8, 10 ), Vector2( 8, 16 ) ]
+}
+
+[node name="Globals" type="Control" groups=[
+"Globals",
+]]
+anchor_right = 0.5
+anchor_bottom = 0.133
+margin_bottom = 0.199997
+theme = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CoinImg" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 16.0
+margin_right = -142.0
+margin_bottom = -14.0
+rect_pivot_offset = Vector2( 25, 0 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CoinAmount" type="Label" parent="."]
+anchor_right = 0.995
+anchor_bottom = 1.0
+margin_left = 58.0
+margin_top = -4.0
+margin_right = -1.52588e-05
+margin_bottom = 4.0
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/CoinSpin = SubResource( 1 )
+anims/CurrencyError = SubResource( 2 )

@@ -17,7 +17,7 @@ var rng := RandomNumberGenerator.new()
 var A: Audio
 
 func _ready():
-	var audio = G.make_node("res://Object/Audio.tscn")
+	var audio = G.make_node(P.audio_tscn)
 	A = audio
 	get_node("/root/G").add_child(A)
 
@@ -43,13 +43,14 @@ func change_scene(scene):
 	viewport.add_child(scene)
 
 func start_game(difficulty: int = 1):
-	var game = make_node("res://Object/Main.tscn")
+	rng.randomize()
+	var game = make_node(P.main_tscn)
 	# Set the difficulty
 	game.difficulty = difficulty
 	change_scene(game)
 
 func change_to_main_menu():
-	change_scene("res://Object/UI/MainMenu.tscn")
+	change_scene(P.mainmenu_tscn)
 
 
 func get_folders(path: String):
