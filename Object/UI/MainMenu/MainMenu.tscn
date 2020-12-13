@@ -1,6 +1,5 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://Theme/Font/P.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Shader/ScrollingMat.tres" type="Material" id=2]
 [ext_resource path="res://Theme/Title/TitleContainer.tres" type="StyleBox" id=3]
 [ext_resource path="res://Theme/Title/Title.tres" type="Theme" id=4]
@@ -81,21 +80,6 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 anti_aliasing = false
-
-[sub_resource type="Animation" id=7]
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("MainMenu/Start/Title:rect_rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5, 3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -10.0, 10.0, -10.0 ]
-}
 
 [node name="Root" type="Control"]
 anchor_right = 1.0
@@ -447,45 +431,57 @@ margin_bottom = 150.0
 text = "Equip"
 press_up_sound = ExtResource( 18 )
 
-[node name="Credits" type="VBoxContainer" parent="MainMenu"]
+[node name="Credits" type="Control" parent="MainMenu"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Container" type="PanelContainer" parent="MainMenu/Credits"]
+[node name="Background" type="ColorRect" parent="MainMenu/Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.007
+margin_right = -3.05176e-05
+margin_bottom = -4.20007
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -3.05176e-05
+margin_bottom = -6.10352e-05
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainMenu/Credits/VBoxContainer"]
 margin_right = 400.0
-margin_bottom = 536.0
+margin_bottom = 535.0
+size_flags_vertical = 3
+
+[node name="LinksContainer" type="VBoxContainer" parent="MainMenu/Credits/VBoxContainer/ScrollContainer"]
+margin_right = 400.0
+margin_bottom = 535.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="RichTextLabel" parent="MainMenu/Credits/Container"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 398.0
-margin_bottom = 534.0
-focus_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/normal_font = ExtResource( 1 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-selection_enabled = true
-
-[node name="Back" parent="MainMenu/Credits" instance=ExtResource( 15 )]
+[node name="Back" parent="MainMenu/Credits/VBoxContainer" instance=ExtResource( 15 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 540.0
+margin_top = 539.0
 margin_right = 400.0
-margin_bottom = 600.0
+margin_bottom = 599.0
 custom_styles/hover = SubResource( 4 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
 custom_styles/normal = ExtResource( 3 )
 text = "Back"
 press_up_sound = ExtResource( 11 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "TitleWobble"
-anims/TitleWobble = SubResource( 7 )
 [connection signal="tab_changed" from="MainMenu" to="MainMenu/Hats" method="mainmenu_tab_changed"]
 [connection signal="pressed" from="MainMenu/Start/Start" to="MainMenu" method="goto_tab" binds= [ 1 ]]
 [connection signal="pressed" from="MainMenu/Start/Hat" to="MainMenu" method="goto_tab" binds= [ 2 ]]
@@ -502,5 +498,4 @@ anims/TitleWobble = SubResource( 7 )
 [connection signal="pressed" from="MainMenu/Hats/Box3/Buy/Buy" to="MainMenu/Hats" method="buy_hat"]
 [connection signal="pressed" from="MainMenu/Hats/Box3/Buy/Preview" to="MainMenu/Hats" method="preview_hat"]
 [connection signal="pressed" from="MainMenu/Hats/Box3/Equip/Equip" to="MainMenu/Hats" method="equip_hat"]
-[connection signal="pressed" from="MainMenu/Credits/Back" to="MainMenu" method="goto_tab" binds= [ 0 ]]
-[connection signal="animation_finished" from="AnimationPlayer" to="MainMenu" method="play_wobble"]
+[connection signal="pressed" from="MainMenu/Credits/VBoxContainer/Back" to="MainMenu" method="goto_tab" binds= [ 0 ]]

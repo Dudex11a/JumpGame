@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Object/UI/DButton/DButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Object/UI/DButton/LinkButton/LinkButton.gd" type="Script" id=2]
+
+[node name="Button" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+press_down_sound = null
+press_up_sound = null
