@@ -5,5 +5,3 @@
 
 [node name="Button" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-press_down_sound = null
-press_up_sound = null

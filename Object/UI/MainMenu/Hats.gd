@@ -132,3 +132,7 @@ func color_picker_changed(hsv: Array):
 func mainmenu_tab_changed(tab):
 	if tab == 2:
 		reset_menu()
+
+func _on_DogButton():
+	player_model.bark()
+	player_model.misc_anim.wiggle()

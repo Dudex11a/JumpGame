@@ -37,3 +37,4 @@ func _input(event):
 		if img_pressed and event.pressed:
 			anim_player_coin.stop()
 			anim_player_coin.play("CoinSpin")
+			G.A.play_sound(load(P.currency_sound), 1)

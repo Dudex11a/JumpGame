@@ -1,0 +1,232 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Object/UI/MainMenu/Title/Note.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Object/UI/MainMenu/Title/Title.gd" type="Script" id=2]
+[ext_resource path="res://Sound/Title/a.wav" type="AudioStream" id=3]
+[ext_resource path="res://Image/DogFlyTitle/O.png" type="Texture" id=4]
+[ext_resource path="res://Image/DogFlyTitle/L.png" type="Texture" id=5]
+[ext_resource path="res://Sound/Title/b.wav" type="AudioStream" id=6]
+[ext_resource path="res://Image/DogFlyTitle/qmark.png" type="Texture" id=7]
+[ext_resource path="res://Image/DogFlyTitle/D.png" type="Texture" id=8]
+[ext_resource path="res://Image/DogFlyTitle/F.png" type="Texture" id=9]
+[ext_resource path="res://Image/DogFlyTitle/G.png" type="Texture" id=10]
+[ext_resource path="res://Sound/Title/d.wav" type="AudioStream" id=11]
+[ext_resource path="res://Image/DogFlyTitle/Y.png" type="Texture" id=12]
+[ext_resource path="res://Sound/Title/e.wav" type="AudioStream" id=13]
+[ext_resource path="res://Shader/RiseFall.shader" type="Shader" id=14]
+[ext_resource path="res://Sound/Title/f.wav" type="AudioStream" id=15]
+[ext_resource path="res://Sound/Title/g.wav" type="AudioStream" id=16]
+[ext_resource path="res://Image/DogFlyTitle/emark.png" type="Texture" id=17]
+[ext_resource path="res://Sound/Title/c6.wav" type="AudioStream" id=18]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 14 )
+shader_param/time_offset = 1.15
+shader_param/wiggle_mod = 1.0
+shader_param/pressed = false
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 14 )
+shader_param/time_offset = 1.05
+shader_param/wiggle_mod = 1.0
+shader_param/pressed = false
+
+[sub_resource type="ShaderMaterial" id=3]
+render_priority = 1
+shader = ExtResource( 14 )
+shader_param/time_offset = 0.75
+shader_param/wiggle_mod = 1.0
+shader_param/pressed = false
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 14 )
+shader_param/time_offset = 0.6
+shader_param/wiggle_mod = 1.0
+shader_param/pressed = false
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 14 )
+shader_param/time_offset = 0.45
+shader_param/wiggle_mod = 1.0
+shader_param/pressed = false
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 14 )
+shader_param/time_offset = 0.3
+shader_param/wiggle_mod = 1.0
+shader_param/pressed = false
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 14 )
+shader_param/time_offset = 0.15
+shader_param/wiggle_mod = 1.0
+shader_param/pressed = false
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 14 )
+shader_param/time_offset = 0.0
+shader_param/wiggle_mod = 1.0
+shader_param/pressed = false
+
+[sub_resource type="Animation" id=10]
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:wiggle_mod")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 9.5, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+
+[node name="Title" type="Control"]
+anchor_left = 0.092
+anchor_right = 0.97
+anchor_bottom = 0.25
+margin_left = 0.199997
+margin_right = -0.999969
+rect_min_size = Vector2( 350, 150 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+wiggle_mod = 0.0
+
+[node name="\?" type="Sprite" parent="."]
+material = SubResource( 1 )
+z_index = 1
+texture = ExtResource( 7 )
+centered = false
+
+[node name="\?Note" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.8745
+anchor_top = 0.127
+anchor_right = 1.00627
+anchor_bottom = 0.84
+margin_left = -0.0750122
+margin_top = -0.0500011
+margin_right = 0.100006
+margin_bottom = 7.62939e-06
+sample = ExtResource( 18 )
+
+[node name="!" type="Sprite" parent="."]
+material = SubResource( 2 )
+z_index = 1
+texture = ExtResource( 17 )
+centered = false
+
+[node name="!Note" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.797357
+anchor_top = 0.127
+anchor_right = 0.874
+anchor_bottom = 0.86
+margin_left = -0.0750122
+margin_top = -0.0500011
+margin_right = 0.100006
+margin_bottom = 7.62939e-06
+sample = ExtResource( 6 )
+
+[node name="Y" type="Sprite" parent="."]
+material = SubResource( 3 )
+z_index = 1
+texture = ExtResource( 12 )
+centered = false
+
+[node name="YNote" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.680098
+anchor_top = 0.127
+anchor_right = 0.797143
+anchor_bottom = 1.0
+margin_left = -0.0341949
+margin_top = -0.0500011
+margin_right = -0.0750122
+margin_bottom = 2.0
+sample = ExtResource( 3 )
+
+[node name="L" type="Sprite" parent="."]
+material = SubResource( 4 )
+z_index = 1
+texture = ExtResource( 5 )
+centered = false
+
+[node name="LNote" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.62
+anchor_top = 0.127
+anchor_right = 0.680143
+anchor_bottom = 0.873
+margin_left = -1.52588e-05
+margin_top = -0.0500011
+margin_right = -0.0500031
+margin_bottom = 0.0500031
+sample = ExtResource( 16 )
+
+[node name="F" type="Sprite" parent="."]
+material = SubResource( 5 )
+z_index = 1
+texture = ExtResource( 9 )
+centered = false
+
+[node name="FNote" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.465571
+anchor_top = 0.127
+anchor_right = 0.62
+anchor_bottom = 0.84
+margin_left = 0.0499878
+margin_top = -0.0500011
+margin_bottom = -7.62939e-06
+sample = ExtResource( 15 )
+
+[node name="G" type="Sprite" parent="."]
+material = SubResource( 6 )
+z_index = 1
+texture = ExtResource( 10 )
+centered = false
+
+[node name="GNote" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.317071
+anchor_top = 0.127
+anchor_right = 0.4715
+anchor_bottom = 1.02
+margin_left = 0.0250015
+margin_top = -0.0500011
+margin_right = -0.0250092
+margin_bottom = -1.52588e-05
+sample = ExtResource( 13 )
+
+[node name="O" type="Sprite" parent="."]
+material = SubResource( 7 )
+z_index = 1
+texture = ExtResource( 4 )
+centered = false
+
+[node name="ONote" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.162857
+anchor_top = 0.127
+anchor_right = 0.317429
+anchor_bottom = 0.84
+margin_top = -0.0500011
+margin_right = -0.100006
+margin_bottom = -7.62939e-06
+sample = ExtResource( 11 )
+
+[node name="D" type="Sprite" parent="."]
+material = SubResource( 8 )
+z_index = 1
+texture = ExtResource( 8 )
+centered = false
+
+[node name="DNote" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.00885714
+anchor_top = 0.127
+anchor_right = 0.171429
+anchor_bottom = 0.84
+margin_left = -0.1
+margin_top = -0.0500011
+margin_bottom = -7.62939e-06
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/WiggleStop = SubResource( 10 )

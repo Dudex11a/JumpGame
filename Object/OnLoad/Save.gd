@@ -10,8 +10,8 @@ var _file := File.new()
 var high_score := 0 setget set_high_score
 var currency := 0 setget set_currency
 var hat := ""
-var hat_color: Array = [1, .5, 1]
-var dog_color: Array = [1, .5, 1]
+var hat_color: Array = [1, 1, .5]
+var dog_color: Array = [1, 1, .5]
 var obtained_hats := []
 
 signal set_property

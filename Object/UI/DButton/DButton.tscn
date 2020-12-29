@@ -1,17 +1,35 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Object/UI/DButton/DButton.gd" type="Script" id=1]
 [ext_resource path="res://Sound/PressUp.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sound/PressDown.wav" type="AudioStream" id=3]
+[ext_resource path="res://Theme/Title/Title.tres" type="Theme" id=4]
+[ext_resource path="res://Shader/ButtonShader.shader" type="Shader" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 5 )
 
 [node name="Button" type="Button"]
+material = SubResource( 1 )
 anchor_right = 0.5
 anchor_bottom = 0.1
 margin_right = 1.52588e-05
 margin_bottom = 3.8147e-06
+theme = ExtResource( 4 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 press_down_sound = ExtResource( 3 )
 press_up_sound = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1.52588e-05
+margin_bottom = -3.8147e-06
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

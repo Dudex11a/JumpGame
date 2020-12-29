@@ -2,6 +2,7 @@ extends Actor
 func get_class(): return "Player"
 
 onready var death_anim := $DeathAnimPlayer
+onready var misc_anim := $MiscAnimPlayer
 onready var se := $SE
 onready var se_thruster := $SEThruster
 onready var thruster := $Thruster
@@ -40,11 +41,9 @@ func _input(event):
 		rising = true
 		emit_signal("jump")
 		# Play Sound
-		se.pitch_scale = G.rng.randf_range(0.8, 1.2)
-		se.play()
+		bark()
 		se_thruster.play()
 		thruster.emitting = true
-		play_anim_sprite(mouth)
 		dog_anims.play("Rising")
 		
 	if event.is_action_released("jump"):
@@ -73,6 +72,11 @@ func play_anim_sprite(sprite: AnimatedSprite):
 
 func blink():
 	play_anim_sprite(eye)
+
+func bark():
+	se.pitch_scale = G.rng.randf_range(0.8, 1.2)
+	se.play()
+	play_anim_sprite(mouth)
 
 func set_score(new_score: int):
 	score = new_score

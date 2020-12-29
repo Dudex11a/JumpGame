@@ -106,12 +106,12 @@ particles_anim_h_frames = 3
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Curve" id=6]
+[sub_resource type="Curve" id=5]
 min_value = -160.0
 max_value = 360.0
 _data = [ Vector2( 0, 83.5218 ), 0.0, 0.0, 0, 0, Vector2( 0.997625, 132.711 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0.656836, 0.849866, 0.997319 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.448925, 1, 1, 1, 0 )
 
@@ -185,6 +185,6 @@ gravity = Vector2( 0, 400 )
 initial_velocity = 100.0
 initial_velocity_random = 0.28
 angle_random = 1.0
-angle_curve = SubResource( 6 )
-color_ramp = SubResource( 5 )
+angle_curve = SubResource( 5 )
+color_ramp = SubResource( 6 )
 anim_speed = 1.0

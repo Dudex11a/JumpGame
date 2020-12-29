@@ -10,5 +10,5 @@ const buy_hat_tscn := "res://Object/UI/DButton/BuyHat/BuyHat.tscn"
 
 const audio_tscn := "res://Object/OnLoad/Audio.tscn"
 
-const currency_sound := "res://Sound/Currency.wav.import"
-const error_sound := "res://Sound/Error.wav.import"
+const currency_sound := "res://Sound/Currency.wav"
+const error_sound := "res://Sound/Error.wav"

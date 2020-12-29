@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Object/UI/MainMenu/Title/Note.gd" type="Script" id=1]
+[ext_resource path="res://Sound/Title/c5.wav" type="AudioStream" id=2]
+
+[node name="Note" type="Control"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 0.1
+anchor_bottom = 0.208
+margin_bottom = 0.200005
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+sample = ExtResource( 2 )
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = 10.0
+[connection signal="button_down" from="." to="." method="_on_Note_button_down"]
+[connection signal="button_up" from="." to="." method="_on_Note_button_up"]
