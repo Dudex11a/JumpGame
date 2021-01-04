@@ -6,10 +6,10 @@ const how_many_to_max := 5
 const movement_mod := 200
 
 const difficulty_name = [
-	"none",
-	"easy",
-	"normal",
-	"hard"
+	"None",
+	"Easy",
+	"Normal",
+	"Hard"
 ]
 
 var rng := RandomNumberGenerator.new()

@@ -2,6 +2,7 @@ extends TabContainer
 
 onready var anim_player: = get_node("../AnimationPlayer")
 onready var title: = $Start/TitleCenter/Title
+onready var globals: = get_parent().get_node("Globals")
 # If the tabs are transing
 export var trans_in_p: = 0.0 setget set_trans_in_p
 export var trans_out_p: = 0.0 setget set_trans_out_p
@@ -31,7 +32,9 @@ func goto_tab(id: int, anim_in: = true):
 	yield(trans_player, "animation_finished")
 	current_tab = id
 	# Set title instrument to active if it is in frame
-	title.active = current_tab == 0
+	var is_tab_0 = current_tab == 0
+	title.active = is_tab_0
+	globals.idle_anim_active = is_tab_0
 	trans_player.play("TransitionOut")
 	yield(trans_player, "animation_finished")
 	# Set trans right back to default

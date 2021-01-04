@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Object/UI/DButton/DButton.gd" type="Script" id=1]
 [ext_resource path="res://Sound/PressUp.wav" type="AudioStream" id=2]
@@ -7,7 +7,44 @@
 [ext_resource path="res://Shader/ButtonShader.shader" type="Shader" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 shader = ExtResource( 5 )
+shader_param/node_size = Vector2( 200, 60 )
+shader_param/radius = 0.25
+shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "ButtonDown"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:shader_rad")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.2 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "ButtonUp"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:shader_rad")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1.5, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.2, 1.0, 1.0, 0.0 ]
+}
 
 [node name="Button" type="Button"]
 material = SubResource( 1 )
@@ -22,6 +59,7 @@ __meta__ = {
 }
 press_down_sound = ExtResource( 3 )
 press_up_sound = ExtResource( 2 )
+shader_rad = 0.2
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
@@ -33,3 +71,8 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/ButtonDown = SubResource( 2 )
+anims/ButtonUp = SubResource( 3 )
+[connection signal="resized" from="." to="." method="set_shader_res"]

@@ -10,9 +10,10 @@ export var coin_anim_percent := 0.0 setget animate_coin_amount
 var previous_currency: int = 0
 var new_currency: int
 
+var idle_anim_active: = true
+
 func _ready():
 	var anim = anim_player_coin.get_animation("CoinSpin")
-	
 	set_property()
 
 func set_property():
@@ -26,10 +27,9 @@ func animate_coin_amount(percent: float):
 	if coin_amount:
 		coin_amount.text = String(anim_coin_amount)
 
-
 func _input(event):
 	# Spin coin if globals is clicked
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and idle_anim_active:
 		var img_pressed = true
 		for axis in ["x", "y"]:
 			var within : bool = (event.position[axis] >= rect_global_position[axis]) && (event.position[axis] <= rect_global_position[axis] + rect_size[axis])

@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://Object/Actor/Actor.gd"
 }, {
 "base": "Node",
+"class": "AdMob",
+"language": "GDScript",
+"path": "res://admob-lib/admob.gd"
+}, {
+"base": "Node",
 "class": "Audio",
 "language": "GDScript",
 "path": "res://Object/OnLoad/Audio.gd"
@@ -56,6 +61,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
+"AdMob": "res://admob-lib/icon.png",
 "Audio": "",
 "BuyHat": "",
 "Collision": "",
@@ -66,14 +72,22 @@ _global_script_class_icons={
 "Sequence": ""
 }
 
+[android]
+
+modules="org/godotengine/godot/GodotAdMob"
+
 [application]
 
 config/name="Jump Game"
-run/main_scene="res://Object/UI/MainMenu/MainMenu.tscn"
+run/main_scene="res://AddDebug/main.tscn"
 boot_splash/image="res://icon.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.png"
+
+[audio]
+
+default_bus_layout=""
 
 [autoload]
 
