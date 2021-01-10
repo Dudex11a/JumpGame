@@ -24,3 +24,4 @@ anims/TransitionOut = SubResource( 1 )
 scale = Vector2( 1.15072, 0.953786 )
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( 1, 1, -1, 1, -1, -1, 1, -1 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]

@@ -1,15 +1,15 @@
 extends Control
 
-onready var background_panel := $Background
-onready var container = $Container
+onready var background := $Background
+onready var container = $Container/PickerContainer
 onready var sliders = [
 	container.get_node("Hue/Slider"),
 	container.get_node("Saturation/Slider"),
 	container.get_node("Value/Slider")
 ]
+onready var title = $Container/Title
 
 signal changed
-signal color_changed
 signal values_changed
 
 func make_color() -> Color:
@@ -33,13 +33,6 @@ func make_values() -> Array:
 		sliders[2].value / 100.0
 		]
 
-func changed(value):
-#	emit_signal("color_changed", make_color())
+func changed(value = null):
 	emit_signal("values_changed", make_values())
-
-func color_changed(color: Color):
-	pass
-#	set_background_color(color)
-#
-#func set_background_color(color: Color = make_color()):
-#	background_panel.modulate = color
+#	background.self_modulate = (make_color() * 0.8).lightened(0.1)

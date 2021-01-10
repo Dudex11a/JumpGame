@@ -7,6 +7,7 @@ onready var label: = $Label
 onready var anim_player: = $AnimationPlayer
 
 export var shader_rad: float = 0 setget set_shader_radius
+export var shader_alpha: float = 1 setget set_shader_alpha
 
 func _ready():
 	# For some reason this doesn't default to 0 on some buttons
@@ -18,15 +19,27 @@ func _ready():
 	connect("button_up", self, "_on_Button_button_up")
 
 func _on_Button_button_down():
-	var mouse_pos = (get_global_mouse_position() - rect_global_position) / rect_size;
-	material.set("shader_param/mouse_pos", mouse_pos);
+	var mouse_pos = get_global_mouse_position()
+	var pos = rect_global_position
+	var size = rect_size
+	var shader_mouse_pos: Vector2 = (mouse_pos - pos) / size
+	# If the mouse isn't in the box, make the shader effect
+	# come from the center of the box.
+	if not G.within_box(mouse_pos, pos, size):
+		shader_mouse_pos = Vector2(.5, .5)
+		
+	material.set("shader_param/mouse_pos", shader_mouse_pos);
 	anim_player.stop()
 	anim_player.play("ButtonDown")
 	G.A.play_sound(press_down_sound)
 	
 func _on_Button_button_up():
-	anim_player.stop()
-	anim_player.play("ButtonUp")
+	# Only play anim if the circle is visible
+	# This is main so this function works with the
+	# focus_exited() signal.
+	if shader_rad > 0:
+		anim_player.stop()
+		anim_player.play("ButtonUp")
 	G.A.play_sound(press_up_sound)
 	
 func set_text(val):
@@ -42,3 +55,7 @@ func set_shader_radius(val: float):
 
 func set_shader_res():
 	material.set("shader_param/node_size", rect_size)
+
+func set_shader_alpha(val: float):
+	shader_alpha = val
+	material.set("shader_param/circle_alpha", shader_alpha)

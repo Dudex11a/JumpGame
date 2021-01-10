@@ -143,3 +143,11 @@ func is_game_over() -> bool:
 	if get_main():
 		return get_main().is_game_over
 	return true
+
+# If point is within the box of 2 Vector2s
+func within_box(point: Vector2, pos: Vector2, size: Vector2) -> bool:
+	var val = true
+	for axis in ["x", "y"]:
+		var within : bool = (point[axis] >= pos[axis]) && (point[axis] <= pos[axis] + size[axis])
+		if not within: val = false
+	return val

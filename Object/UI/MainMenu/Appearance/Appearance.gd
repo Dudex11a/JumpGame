@@ -17,6 +17,8 @@ var selected_hat_button: DButton
 
 var selected_color_button: DButton
 
+signal exit
+
 func _ready():
 	# Init hat
 	select_hat("None", none_hat_button)
@@ -106,6 +108,11 @@ func set_player_color(child_index: int):
 		# Increment index
 		index += 1
 	selected_color_button = button
+	# If there is no button exit the function
+#	if not selected_color_button:
+#		return
+	# Set Color Picker Title
+	color_picker.title.text = button.label.text
 	# Set color picker values
 	var values: Array
 	match selected_color_button.get_index():
@@ -117,8 +124,10 @@ func set_player_color(child_index: int):
 	# If the button is toggled on, display the color picker
 	if button.pressed:
 		box_1.current_tab = 1
+		box_3.visible = false
 	else:
 		box_1.current_tab = 0
+		box_3.visible = true
 
 func color_picker_changed(hsv: Array):
 	match selected_color_button.get_index():
@@ -136,3 +145,15 @@ func mainmenu_tab_changed(tab):
 func _on_DogButton():
 	player_model.bark()
 	player_model.misc_anim.wiggle()
+
+func _on_Back_pressed():
+	# Deselect button if it's pressed
+	if selected_color_button:
+		if selected_color_button.pressed:
+			selected_color_button.pressed = false
+			box_1.current_tab = 0
+			# Buy/Equip box needs to be visible
+			box_3.visible = true
+			# Exit the function here so it doesn't exit
+			return
+	emit_signal("exit")

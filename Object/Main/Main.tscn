@@ -42,6 +42,7 @@ shader = ExtResource( 15 )
 shader_param/node_size = Vector2( 200, 60 )
 shader_param/radius = 0.25
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
@@ -49,6 +50,7 @@ shader = ExtResource( 15 )
 shader_param/node_size = Vector2( 200, 60 )
 shader_param/radius = 0.25
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
 
 [node name="Main" type="Node2D" groups=[
 "GameOver",

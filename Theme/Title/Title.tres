@@ -1,10 +1,11 @@
-[gd_resource type="Theme" load_steps=10 format=2]
+[gd_resource type="Theme" load_steps=12 format=2]
 
 [ext_resource path="res://Theme/Font/H1.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Theme/Title/ButtonNormal.tres" type="StyleBox" id=2]
 [ext_resource path="res://Theme/Title/ButtonHover.tres" type="StyleBox" id=3]
 [ext_resource path="res://Theme/Title/ButtonPressed.tres" type="StyleBox" id=4]
 [ext_resource path="res://Theme/Title/TitleContainer.tres" type="StyleBox" id=5]
+[ext_resource path="res://Theme/Title/ButtonFocus.tres" type="StyleBox" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.117647, 0.117647, 0.117647, 1 )
@@ -31,6 +32,8 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
+[sub_resource type="StyleBoxFlat" id=5]
+
 [resource]
 default_font = ExtResource( 1 )
 Button/colors/font_color = Color( 1, 1, 1, 1 )
@@ -40,7 +43,7 @@ Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 Button/constants/hseparation = 2
 Button/fonts/font = null
 Button/styles/disabled = SubResource( 1 )
-Button/styles/focus = ExtResource( 3 )
+Button/styles/focus = ExtResource( 6 )
 Button/styles/hover = ExtResource( 3 )
 Button/styles/normal = ExtResource( 2 )
 Button/styles/pressed = ExtResource( 4 )
@@ -66,3 +69,10 @@ TabContainer/styles/panel = SubResource( 2 )
 TabContainer/styles/tab_bg = SubResource( 3 )
 TabContainer/styles/tab_disabled = SubResource( 4 )
 TabContainer/styles/tab_fg = ExtResource( 2 )
+VSlider/icons/grabber = null
+VSlider/icons/grabber_disabled = null
+VSlider/icons/grabber_highlight = null
+VSlider/icons/tick = null
+VSlider/styles/grabber_area = SubResource( 5 )
+VSlider/styles/grabber_area_highlight = null
+VSlider/styles/slider = null

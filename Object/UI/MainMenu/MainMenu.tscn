@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Object/UI/MainMenu/Title/Title.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Shader/ScrollingMat.tres" type="Material" id=2]
@@ -7,14 +7,11 @@
 [ext_resource path="res://Image/Clouds.png" type="Texture" id=5]
 [ext_resource path="res://Shader/ButtonShader.shader" type="Shader" id=6]
 [ext_resource path="res://Object/UI/MainMenu/MainMenu.gd" type="Script" id=7]
-[ext_resource path="res://Object/Actor/Player/Player.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Object/UI/MainMenu/Hats.gd" type="Script" id=9]
+[ext_resource path="res://Object/UI/MainMenu/Appearance/Appearance.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Sound/PressOut.wav" type="AudioStream" id=11]
 [ext_resource path="res://Shader/SkyMat.tres" type="Material" id=14]
 [ext_resource path="res://Object/UI/DButton/DButton.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Object/OnLoad/Globals.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Object/UI/DColorPicker/DColorPicker.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Sound/Equip.wav" type="AudioStream" id=18]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -22,6 +19,7 @@ shader = ExtResource( 6 )
 shader_param/node_size = Vector2( 200, 60 )
 shader_param/radius = 0.0
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
@@ -29,6 +27,7 @@ shader = ExtResource( 6 )
 shader_param/node_size = Vector2( 200, 60 )
 shader_param/radius = 0.0
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -36,6 +35,7 @@ shader = ExtResource( 6 )
 shader_param/node_size = Vector2( 200, 60 )
 shader_param/radius = 0.0
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
@@ -43,6 +43,7 @@ shader = ExtResource( 6 )
 shader_param/node_size = Vector2( 200, 60 )
 shader_param/radius = 0.0
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
 
 [sub_resource type="Theme" id=5]
 PanelContainer/styles/panel = ExtResource( 3 )
@@ -53,6 +54,7 @@ shader = ExtResource( 6 )
 shader_param/node_size = Vector2( 200, 60 )
 shader_param/radius = 0.0
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id=7]
 resource_local_to_scene = true
@@ -60,6 +62,7 @@ shader = ExtResource( 6 )
 shader_param/node_size = Vector2( 200, 60 )
 shader_param/radius = 0.0
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id=8]
 resource_local_to_scene = true
@@ -67,6 +70,7 @@ shader = ExtResource( 6 )
 shader_param/node_size = Vector2( 200, 60 )
 shader_param/radius = 0.0
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id=9]
 resource_local_to_scene = true
@@ -74,6 +78,7 @@ shader = ExtResource( 6 )
 shader_param/node_size = Vector2( 200, 60 )
 shader_param/radius = 0.0
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id=10]
 resource_local_to_scene = true
@@ -81,57 +86,9 @@ shader = ExtResource( 6 )
 shader_param/node_size = Vector2( 200, 60 )
 shader_param/radius = 0.0
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
 
-[sub_resource type="ShaderMaterial" id=11]
-resource_local_to_scene = true
-shader = ExtResource( 6 )
-shader_param/node_size = Vector2( 200, 60 )
-shader_param/radius = 0.0
-shader_param/mouse_pos = Vector2( 0.5, 0.5 )
-
-[sub_resource type="ShaderMaterial" id=12]
-resource_local_to_scene = true
-shader = ExtResource( 6 )
-shader_param/node_size = Vector2( 200, 60 )
-shader_param/radius = 0.0
-shader_param/mouse_pos = Vector2( 0.5, 0.5 )
-
-[sub_resource type="ShaderMaterial" id=13]
-resource_local_to_scene = true
-shader = ExtResource( 6 )
-shader_param/node_size = Vector2( 200, 60 )
-shader_param/radius = 0.0
-shader_param/mouse_pos = Vector2( 0.5, 0.5 )
-
-[sub_resource type="ShaderMaterial" id=14]
-resource_local_to_scene = true
-shader = ExtResource( 6 )
-shader_param/node_size = Vector2( 200, 60 )
-shader_param/radius = 0.0
-shader_param/mouse_pos = Vector2( 0.5, 0.5 )
-
-[sub_resource type="ShaderMaterial" id=15]
-resource_local_to_scene = true
-shader = ExtResource( 6 )
-shader_param/node_size = Vector2( 200, 60 )
-shader_param/radius = 0.0
-shader_param/mouse_pos = Vector2( 0.5, 0.5 )
-
-[sub_resource type="ShaderMaterial" id=16]
-resource_local_to_scene = true
-shader = ExtResource( 6 )
-shader_param/node_size = Vector2( 200, 60 )
-shader_param/radius = 0.0
-shader_param/mouse_pos = Vector2( 0.5, 0.5 )
-
-[sub_resource type="ShaderMaterial" id=17]
-resource_local_to_scene = true
-shader = ExtResource( 6 )
-shader_param/node_size = Vector2( 200, 60 )
-shader_param/radius = 0.0
-shader_param/mouse_pos = Vector2( 0.5, 0.5 )
-
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=11]
 length = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:trans_in_p")
@@ -146,7 +103,7 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=12]
 length = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:trans_out_p")
@@ -362,183 +319,8 @@ margin_right = 400.0
 margin_bottom = 458.0
 text = "Back"
 
-[node name="Hats" type="Control" parent="MainMenu"]
+[node name="Customize" parent="MainMenu" instance=ExtResource( 8 )]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource( 9 )
-
-[node name="DogButton" type="Button" parent="MainMenu/Hats"]
-self_modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.505
-anchor_top = 0.403
-anchor_right = 1.0
-anchor_bottom = 0.604
-margin_top = 0.199982
-margin_right = -2.0
-margin_bottom = -2.40002
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Player" parent="MainMenu/Hats" instance=ExtResource( 8 )]
-position = Vector2( 300, 300 )
-scale = Vector2( 2, 2 )
-
-[node name="Back" parent="MainMenu/Hats" instance=ExtResource( 15 )]
-material = SubResource( 10 )
-anchor_left = 0.5
-anchor_top = 0.867
-anchor_right = 0.995
-anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = -0.200012
-margin_right = -3.05176e-05
-text = "Back"
-press_up_sound = ExtResource( 11 )
-
-[node name="Box1" type="TabContainer" parent="MainMenu/Hats"]
-anchor_right = 0.497
-anchor_bottom = 0.867
-margin_right = 2.2
-margin_bottom = -0.200012
-tabs_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Hats" type="ScrollContainer" parent="MainMenu/Hats/Box1"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Hats" type="VBoxContainer" parent="MainMenu/Hats/Box1/Hats"]
-margin_right = 201.0
-margin_bottom = 520.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="None" parent="MainMenu/Hats/Box1/Hats/Hats" instance=ExtResource( 15 )]
-material = SubResource( 11 )
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 201.0
-margin_bottom = 60.0
-size_flags_horizontal = 3
-text = "None"
-
-[node name="ColorPicker" parent="MainMenu/Hats/Box1" instance=ExtResource( 17 )]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
-
-[node name="Box2" type="TabContainer" parent="MainMenu/Hats"]
-anchor_left = 0.5
-anchor_top = 0.6
-anchor_right = 1.0
-anchor_bottom = 0.867
-margin_left = 1.52588e-05
-margin_top = 3.05176e-05
-margin_right = 3.05176e-05
-margin_bottom = -0.200012
-tabs_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Color" type="VBoxContainer" parent="MainMenu/Hats/Box2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 1
-
-[node name="HatColor" parent="MainMenu/Hats/Box2/Color" instance=ExtResource( 15 )]
-material = SubResource( 12 )
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 200.0
-margin_bottom = 77.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-toggle_mode = true
-text = "Hat Color"
-
-[node name="DogColor" parent="MainMenu/Hats/Box2/Color" instance=ExtResource( 15 )]
-material = SubResource( 13 )
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 81.0
-margin_right = 200.0
-margin_bottom = 159.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-toggle_mode = true
-text = "Dog Color"
-
-[node name="Box3" type="TabContainer" parent="MainMenu/Hats"]
-anchor_left = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.4
-tabs_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Buy" type="VBoxContainer" parent="MainMenu/Hats/Box3"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 1
-
-[node name="Buy" parent="MainMenu/Hats/Box3/Buy" instance=ExtResource( 15 )]
-material = SubResource( 14 )
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 58.0
-margin_right = 200.0
-margin_bottom = 118.0
-text = "Buy"
-
-[node name="Preview" parent="MainMenu/Hats/Box3/Buy" instance=ExtResource( 15 )]
-material = SubResource( 15 )
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 122.0
-margin_right = 200.0
-margin_bottom = 182.0
-toggle_mode = true
-text = "Preview"
-
-[node name="Equip" type="VBoxContainer" parent="MainMenu/Hats/Box3"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 1
-
-[node name="Equip" parent="MainMenu/Hats/Box3/Equip" instance=ExtResource( 15 )]
-material = SubResource( 16 )
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 90.0
-margin_right = 200.0
-margin_bottom = 150.0
-text = "Equip"
-press_up_sound = ExtResource( 18 )
 
 [node name="Credits" type="Control" parent="MainMenu"]
 visible = false
@@ -580,7 +362,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Back" parent="MainMenu/Credits/VBoxContainer" instance=ExtResource( 15 )]
-material = SubResource( 17 )
+material = SubResource( 10 )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 539.0
@@ -590,9 +372,8 @@ text = "Back"
 press_up_sound = ExtResource( 11 )
 
 [node name="TransitionPlayer" type="AnimationPlayer" parent="MainMenu"]
-anims/TransitionIn = SubResource( 21 )
-anims/TransitionOut = SubResource( 22 )
-[connection signal="tab_changed" from="MainMenu" to="MainMenu/Hats" method="mainmenu_tab_changed"]
+anims/TransitionIn = SubResource( 11 )
+anims/TransitionOut = SubResource( 12 )
 [connection signal="pressed" from="MainMenu/Start/Start" to="MainMenu" method="goto_tab" binds= [ 1 ]]
 [connection signal="pressed" from="MainMenu/Start/Customize" to="MainMenu" method="goto_tab" binds= [ 2 ]]
 [connection signal="pressed" from="MainMenu/Start/Credits" to="MainMenu" method="goto_tab" binds= [ 3 ]]
@@ -601,12 +382,5 @@ anims/TransitionOut = SubResource( 22 )
 [connection signal="pressed" from="MainMenu/StartDifficulty/2" to="MainMenu" method="start" binds= [ 2 ]]
 [connection signal="pressed" from="MainMenu/StartDifficulty/3" to="MainMenu" method="start" binds= [ 3 ]]
 [connection signal="pressed" from="MainMenu/StartDifficulty/Back" to="MainMenu" method="goto_tab" binds= [ 0, false ]]
-[connection signal="button_down" from="MainMenu/Hats/DogButton" to="MainMenu/Hats" method="_on_DogButton"]
-[connection signal="pressed" from="MainMenu/Hats/Back" to="MainMenu" method="goto_tab" binds= [ 0, false ]]
-[connection signal="values_changed" from="MainMenu/Hats/Box1/ColorPicker" to="MainMenu/Hats" method="color_picker_changed"]
-[connection signal="pressed" from="MainMenu/Hats/Box2/Color/HatColor" to="MainMenu/Hats" method="set_player_color" binds= [ 0 ]]
-[connection signal="pressed" from="MainMenu/Hats/Box2/Color/DogColor" to="MainMenu/Hats" method="set_player_color" binds= [ 1 ]]
-[connection signal="pressed" from="MainMenu/Hats/Box3/Buy/Buy" to="MainMenu/Hats" method="buy_hat"]
-[connection signal="pressed" from="MainMenu/Hats/Box3/Buy/Preview" to="MainMenu/Hats" method="preview_hat"]
-[connection signal="pressed" from="MainMenu/Hats/Box3/Equip/Equip" to="MainMenu/Hats" method="equip_hat"]
+[connection signal="exit" from="MainMenu/Customize" to="MainMenu" method="goto_tab" binds= [ 0, false ]]
 [connection signal="pressed" from="MainMenu/Credits/VBoxContainer/Back" to="MainMenu" method="goto_tab" binds= [ 0, false ]]
