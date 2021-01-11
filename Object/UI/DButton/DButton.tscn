@@ -3,8 +3,8 @@
 [ext_resource path="res://Object/UI/DButton/DButton.gd" type="Script" id=1]
 [ext_resource path="res://Sound/PressUp.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sound/PressDown.wav" type="AudioStream" id=3]
-[ext_resource path="res://Theme/Title/Title.tres" type="Theme" id=4]
-[ext_resource path="res://Shader/ButtonShader.shader" type="Shader" id=5]
+[ext_resource path="res://Theme/Main/Main.tres" type="Theme" id=4]
+[ext_resource path="res://Shader/DButton.shader" type="Shader" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -78,6 +78,7 @@ anchor_right = 0.5
 anchor_bottom = 0.1
 margin_right = 1.52588e-05
 margin_bottom = 3.8147e-06
+mouse_default_cursor_shape = 2
 theme = ExtResource( 4 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -100,5 +101,5 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/ButtonDown = SubResource( 2 )
 anims/ButtonUp = SubResource( 3 )
-[connection signal="focus_exited" from="." to="." method="_on_Button_button_up"]
+[connection signal="focus_exited" from="." to="." method="button_up_shader"]
 [connection signal="resized" from="." to="." method="set_shader_res"]

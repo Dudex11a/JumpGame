@@ -2,11 +2,12 @@
 
 [ext_resource path="res://Object/UI/DColorPicker/DColorPicker.gd" type="Script" id=1]
 [ext_resource path="res://Theme/Font/H2.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Theme/Title/TitleContainer.tres" type="StyleBox" id=3]
-[ext_resource path="res://Theme/Title/ButtonNormal.tres" type="StyleBox" id=4]
-[ext_resource path="res://Theme/Title/ButtonHover.tres" type="StyleBox" id=5]
-[ext_resource path="res://Theme/Title/ButtonPressed.tres" type="StyleBox" id=6]
+[ext_resource path="res://Theme/Main/TitleContainer.tres" type="StyleBox" id=3]
+[ext_resource path="res://Theme/Main/ButtonNormal.tres" type="StyleBox" id=4]
+[ext_resource path="res://Theme/Main/ButtonHover.tres" type="StyleBox" id=5]
+[ext_resource path="res://Theme/Main/ButtonPressed.tres" type="StyleBox" id=6]
 [ext_resource path="res://Image/SliderBar.png" type="Texture" id=7]
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.956863, 0.956863, 0.894118, 1 )

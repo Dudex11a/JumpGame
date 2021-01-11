@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Object/UI/DButton/DButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Object/OnLoad/Globals.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Object/OnLoad/Globals.gd" type="Script" id=3]
+[ext_resource path="res://Object/UI/DButton/DButton.gd" type="Script" id=4]
+[ext_resource path="res://Theme/Main/Main.tres" type="Theme" id=5]
+[ext_resource path="res://Theme/HUD/HUD.tres" type="Theme" id=6]
+[ext_resource path="res://Sound/PressDown.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sound/PressOut.wav" type="AudioStream" id=8]
+[ext_resource path="res://Shader/DButton.shader" type="Shader" id=9]
+
+
+
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 9 )
+shader_param/node_size = Vector2( 200, 60 )
+shader_param/radius = 0.25
+shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 9 )
+shader_param/node_size = Vector2( 200, 60 )
+shader_param/radius = 0.25
+shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
+
+[node name="ResultsLayer" type="Node2D"]
+visible = false
+z_index = 1
+
+[node name="Results" type="PanelContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0.388235 )
+margin_top = 80.0
+margin_right = 400.0
+margin_bottom = 520.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="Results"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 398.0
+margin_bottom = 438.0
+color = Color( 0, 0, 0, 0.784314 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Results"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 398.0
+margin_bottom = 438.0
+alignment = 1
+
+[node name="Restart" type="Button" parent="Results/VBoxContainer" instance=ExtResource( 1 )]
+material = SubResource( 3 )
+margin_right = 396.0
+margin_bottom = 216.0
+size_flags_vertical = 3
+theme = ExtResource( 5 )
+text = "Restart"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+press_down_sound = ExtResource( 7 )
+press_up_sound = ExtResource( 8 )
+
+[node name="MainMenu" type="Button" parent="Results/VBoxContainer" instance=ExtResource( 1 )]
+material = SubResource( 4 )
+margin_top = 220.0
+margin_right = 396.0
+margin_bottom = 436.0
+size_flags_vertical = 3
+theme = ExtResource( 5 )
+text = "Main Menu"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+press_down_sound = ExtResource( 7 )
+press_up_sound = ExtResource( 8 )
+
+[node name="Globals" type="Control" parent="." groups=[
+"Globals",
+] instance=ExtResource( 2 )]
+anchor_right = 0.5
+anchor_bottom = 0.133
+margin_top = 520.0
+margin_right = 400.0
+margin_bottom = 600.0
+theme = ExtResource( 6 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="focus_exited" from="Results/VBoxContainer/Restart" to="Results/VBoxContainer/Restart" method="button_up_shader"]
+[connection signal="resized" from="Results/VBoxContainer/Restart" to="Results/VBoxContainer/Restart" method="set_shader_res"]
+[connection signal="focus_exited" from="Results/VBoxContainer/MainMenu" to="Results/VBoxContainer/MainMenu" method="button_up_shader"]
+[connection signal="resized" from="Results/VBoxContainer/MainMenu" to="Results/VBoxContainer/MainMenu" method="set_shader_res"]

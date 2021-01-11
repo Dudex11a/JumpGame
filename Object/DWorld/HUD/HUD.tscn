@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Object/Main/HUD.gd" type="Script" id=1]
+[ext_resource path="res://Theme/HUD/HUD.tres" type="Theme" id=2]
+
+[node name="HUDLayer" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+margin_top = -0.0431595
+margin_right = 400.0
+margin_bottom = 79.9568
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" type="Control" parent="." groups=[
+"GameOver",
+"Score",
+]]
+margin_top = -0.0431595
+margin_right = 400.0
+margin_bottom = 79.9568
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="HUD"]
+margin_left = 5.0
+margin_right = 38.0
+margin_bottom = 88.0
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="HUD"]
+margin_left = 250.0
+margin_right = 396.0
+margin_bottom = 88.0
+text = "00:00"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

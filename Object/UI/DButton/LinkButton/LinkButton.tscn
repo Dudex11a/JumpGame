@@ -2,7 +2,8 @@
 
 [ext_resource path="res://Object/UI/DButton/DButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Object/UI/DButton/LinkButton/LinkButton.gd" type="Script" id=2]
-[ext_resource path="res://Shader/ButtonShader.shader" type="Shader" id=3]
+[ext_resource path="res://Shader/DButton.shader" type="Shader" id=3]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true

@@ -9,6 +9,7 @@ const link_button := "res://Object/UI/DButton/LinkButton/LinkButton.tscn"
 const buy_hat_tscn := "res://Object/UI/DButton/BuyHat/BuyHat.tscn"
 
 const audio_tscn := "res://Object/OnLoad/Audio.tscn"
+const debug_tscn := "res://Object/OnLoad/Debug/Debug.tscn"
 
 const currency_sound := "res://Sound/Currency.wav"
 const error_sound := "res://Sound/Error.wav"

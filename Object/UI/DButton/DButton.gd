@@ -37,10 +37,14 @@ func _on_Button_button_up():
 	# Only play anim if the circle is visible
 	# This is main so this function works with the
 	# focus_exited() signal.
+	button_up_shader()
+	G.A.play_sound(press_up_sound)
+	
+func button_up_shader():
 	if shader_rad > 0:
 		anim_player.stop()
 		anim_player.play("ButtonUp")
-	G.A.play_sound(press_up_sound)
+	
 	
 func set_text(val):
 	replace_button_text(val)

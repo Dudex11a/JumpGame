@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Object/DWorld/IncomingSpawn/IncomingSpawn.gd" type="Script" id=1]
+
+
+
+[node name="EnemySpawn" type="Position2D" groups=[
+"PlayerDeath",
+"TransitionDone",
+]]
+position = Vector2( 500, -0.043 )
+script = ExtResource( 1 )

@@ -15,11 +15,17 @@ const difficulty_name = [
 var rng := RandomNumberGenerator.new()
 
 var A: Audio
+var D: Debug
 
 func _ready():
 	var audio = G.make_node(P.audio_tscn)
 	A = audio
 	get_node("/root/G").add_child(A)
+	# Load debug scene
+	if OS.is_debug_build():
+		var debug = G.make_node(P.debug_tscn)
+		D = debug
+		get_node("/root/G").add_child(debug)
 
 func change_scene(scene):
 	var viewport := get_viewport()
