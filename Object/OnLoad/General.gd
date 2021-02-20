@@ -30,9 +30,10 @@ func _ready():
 func change_scene(scene):
 	var viewport := get_viewport()
 	
-	# Delete all children that aren't node
+	# Delete all children that have a longer name than 1 char
 	for child in viewport.get_children():
-		if child.get_class() != "Node":
+#		if child.get_class() != "Node":
+		if child.name.length() > 1:
 			child.queue_free()
 			
 	# If the parameter given is a path, make the node

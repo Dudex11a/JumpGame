@@ -87,6 +87,7 @@ margin_left = -4.76759
 margin_top = 66.9514
 margin_right = 45.2324
 margin_bottom = 116.951
+mouse_filter = 2
 texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -98,6 +99,7 @@ margin_left = 23.3082
 margin_top = 66.9514
 margin_right = 73.3082
 margin_bottom = 116.951
+mouse_filter = 2
 texture = ExtResource( 6 )
 flip_v = true
 __meta__ = {
@@ -110,6 +112,7 @@ margin_left = 51.3839
 margin_top = 66.9514
 margin_right = 101.384
 margin_bottom = 116.951
+mouse_filter = 2
 texture = ExtResource( 6 )
 
 [node name="BlueTri" type="TextureRect" parent="TabContainer/After"]
@@ -118,6 +121,8 @@ margin_left = 79.1949
 margin_top = 66.9514
 margin_right = 129.195
 margin_bottom = 116.951
+mouse_filter = 2
 texture = ExtResource( 6 )
 flip_v = true
+[connection signal="pressed" from="." to="." method="pressed"]
 [connection signal="pressed" from="Button" to="." method="emit_signal" binds= [ "pressed" ]]

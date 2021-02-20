@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Object/UI/MainMenu/Title/Title.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Shader/ScrollingMat.tres" type="Material" id=2]
@@ -11,15 +11,21 @@
 [ext_resource path="res://Object/UI/MainMenu/WorldCard/WorldCard.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Object/UI/MainMenu/WorldSelect.gd" type="Script" id=10]
 [ext_resource path="res://Sound/PressOut.wav" type="AudioStream" id=11]
+[ext_resource path="res://Object/UI/MainMenu/WorldPreview.gd" type="Script" id=12]
+[ext_resource path="res://Theme/Font/H1.tres" type="DynamicFont" id=13]
 [ext_resource path="res://Shader/SkyMat.tres" type="Material" id=14]
 [ext_resource path="res://Object/UI/DButton/DButton.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Object/OnLoad/Globals.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Object/UI/MainMenu/WorldCard/ExampleFull.png" type="Texture" id=17]
+[ext_resource path="res://Image/Tri.png" type="Texture" id=18]
+[ext_resource path="res://Theme/Font/H2.tres" type="DynamicFont" id=19]
+[ext_resource path="res://Object/DWorld/DWorlds/Debug1/Debug1.tscn" type="PackedScene" id=20]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 6 )
 shader_param/node_size = Vector2( 200, 60 )
-shader_param/radius = 0.0
+shader_param/radius = 0.25
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
 shader_param/circle_alpha = 1.0
 
@@ -27,7 +33,7 @@ shader_param/circle_alpha = 1.0
 resource_local_to_scene = true
 shader = ExtResource( 6 )
 shader_param/node_size = Vector2( 200, 60 )
-shader_param/radius = 0.25
+shader_param/radius = 0.0
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
 shader_param/circle_alpha = 1.0
 
@@ -47,16 +53,16 @@ shader_param/radius = 0.0
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
 shader_param/circle_alpha = 1.0
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="Theme" id=5]
+PanelContainer/styles/panel = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=6]
 resource_local_to_scene = true
 shader = ExtResource( 6 )
 shader_param/node_size = Vector2( 200, 60 )
 shader_param/radius = 0.0
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
 shader_param/circle_alpha = 1.0
-
-[sub_resource type="Theme" id=6]
-PanelContainer/styles/panel = ExtResource( 3 )
 
 [sub_resource type="ShaderMaterial" id=7]
 resource_local_to_scene = true
@@ -90,15 +96,7 @@ shader_param/radius = 0.0
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
 shader_param/circle_alpha = 1.0
 
-[sub_resource type="ShaderMaterial" id=11]
-resource_local_to_scene = true
-shader = ExtResource( 6 )
-shader_param/node_size = Vector2( 200, 60 )
-shader_param/radius = 0.0
-shader_param/mouse_pos = Vector2( 0.5, 0.5 )
-shader_param/circle_alpha = 1.0
-
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=11]
 length = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:trans_in_p")
@@ -113,7 +111,7 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=12]
 length = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:trans_out_p")
@@ -127,6 +125,14 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, 1.0 ]
 }
+
+[sub_resource type="ShaderMaterial" id=13]
+resource_local_to_scene = true
+shader = ExtResource( 6 )
+shader_param/node_size = Vector2( 200, 60 )
+shader_param/radius = 0.25
+shader_param/mouse_pos = Vector2( 0.5, 0.5 )
+shader_param/circle_alpha = 1.0
 
 [node name="Root" type="Control"]
 anchor_right = 1.0
@@ -201,12 +207,6 @@ texture = ExtResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 400, 250 )
 
-[node name="Globals" parent="." instance=ExtResource( 16 )]
-anchor_top = 0.867
-anchor_bottom = 1.0
-margin_top = -0.200012
-margin_bottom = 0.0
-
 [node name="MainMenu" type="TabContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 0.866667
@@ -223,9 +223,9 @@ anchor_bottom = 1.0
 alignment = 1
 
 [node name="TitleCenter" type="CenterContainer" parent="MainMenu/Start"]
-margin_top = 25.0
+margin_top = 57.0
 margin_right = 400.0
-margin_bottom = 175.0
+margin_bottom = 207.0
 rect_min_size = Vector2( 325, 150 )
 
 [node name="Title" parent="MainMenu/Start/TitleCenter" instance=ExtResource( 1 )]
@@ -240,45 +240,36 @@ margin_bottom = 150.0
 material = SubResource( 1 )
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 179.0
+margin_top = 211.0
 margin_right = 400.0
-margin_bottom = 239.0
+margin_bottom = 271.0
 text = "Start"
 
-[node name="Start2" parent="MainMenu/Start" instance=ExtResource( 15 )]
+[node name="Customize" parent="MainMenu/Start" instance=ExtResource( 15 )]
 material = SubResource( 2 )
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 243.0
+margin_top = 275.0
 margin_right = 400.0
-margin_bottom = 303.0
-text = "Start2"
-
-[node name="Customize" parent="MainMenu/Start" instance=ExtResource( 15 )]
-material = SubResource( 3 )
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 307.0
-margin_right = 400.0
-margin_bottom = 367.0
+margin_bottom = 335.0
 text = "Customize"
 
 [node name="Credits" parent="MainMenu/Start" instance=ExtResource( 15 )]
-material = SubResource( 4 )
+material = SubResource( 3 )
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 371.0
+margin_top = 339.0
 margin_right = 400.0
-margin_bottom = 431.0
+margin_bottom = 399.0
 text = "Credits"
 
 [node name="Exit" parent="MainMenu/Start" instance=ExtResource( 15 )]
-material = SubResource( 5 )
+material = SubResource( 4 )
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 435.0
+margin_top = 403.0
 margin_right = 400.0
-margin_bottom = 495.0
+margin_bottom = 463.0
 text = "Exit"
 press_up_sound = ExtResource( 11 )
 
@@ -292,7 +283,7 @@ alignment = 1
 margin_top = 142.0
 margin_right = 400.0
 margin_bottom = 202.0
-theme = SubResource( 6 )
+theme = SubResource( 5 )
 
 [node name="Difficulty" type="Label" parent="MainMenu/StartDifficulty/TitleBox"]
 margin_left = 2.0
@@ -303,7 +294,7 @@ text = "Difficulty"
 align = 1
 
 [node name="1" parent="MainMenu/StartDifficulty" instance=ExtResource( 15 )]
-material = SubResource( 7 )
+material = SubResource( 6 )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 206.0
@@ -312,7 +303,7 @@ margin_bottom = 266.0
 text = "1"
 
 [node name="2" parent="MainMenu/StartDifficulty" instance=ExtResource( 15 )]
-material = SubResource( 8 )
+material = SubResource( 7 )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 270.0
@@ -321,7 +312,7 @@ margin_bottom = 330.0
 text = "2"
 
 [node name="3" parent="MainMenu/StartDifficulty" instance=ExtResource( 15 )]
-material = SubResource( 9 )
+material = SubResource( 8 )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 334.0
@@ -330,7 +321,7 @@ margin_bottom = 394.0
 text = "3"
 
 [node name="Back" parent="MainMenu/StartDifficulty" instance=ExtResource( 15 )]
-material = SubResource( 10 )
+material = SubResource( 9 )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 398.0
@@ -381,7 +372,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Back" parent="MainMenu/Credits/VBoxContainer" instance=ExtResource( 15 )]
-material = SubResource( 11 )
+material = SubResource( 10 )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 539.0
@@ -391,8 +382,8 @@ text = "Back"
 press_up_sound = ExtResource( 11 )
 
 [node name="TransitionPlayer" type="AnimationPlayer" parent="MainMenu"]
-anims/TransitionIn = SubResource( 12 )
-anims/TransitionOut = SubResource( 13 )
+anims/TransitionIn = SubResource( 11 )
+anims/TransitionOut = SubResource( 12 )
 
 [node name="WorldSelect" type="Control" parent="MainMenu"]
 visible = false
@@ -434,6 +425,10 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 125.0
 margin_bottom = 125.0
+owned = true
+world_name = "Debug1"
+world = ExtResource( 20 )
+cost = 25
 
 [node name="WorldCard2" parent="MainMenu/WorldSelect/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
@@ -441,6 +436,7 @@ anchor_bottom = 0.0
 margin_left = 130.0
 margin_right = 255.0
 margin_bottom = 125.0
+world_name = "World1"
 
 [node name="WorldCard3" parent="MainMenu/WorldSelect/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
@@ -448,6 +444,7 @@ anchor_bottom = 0.0
 margin_left = 260.0
 margin_right = 385.0
 margin_bottom = 125.0
+world_name = "World2"
 
 [node name="WorldCard4" parent="MainMenu/WorldSelect/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
@@ -455,9 +452,10 @@ anchor_bottom = 0.0
 margin_top = 130.0
 margin_right = 125.0
 margin_bottom = 255.0
+world_name = "World3"
 
 [node name="Back" parent="MainMenu/WorldSelect" instance=ExtResource( 15 )]
-material = SubResource( 11 )
+material = SubResource( 10 )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 201.0
@@ -471,19 +469,163 @@ press_up_sound = ExtResource( 11 )
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 12 )
+
+[node name="Background" type="TextureRect" parent="MainMenu/WorldPreview"]
+anchor_right = 1.0
+anchor_bottom = 1.15
+margin_right = 3.05176e-05
+margin_bottom = 1.99982
+texture = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundDarken1" type="ColorRect" parent="MainMenu/WorldPreview"]
+anchor_right = 1.0
+anchor_bottom = 0.173
+margin_right = 3.05176e-05
+margin_bottom = 110.04
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Tris" type="Control" parent="MainMenu/WorldPreview"]
+anchor_right = 1.0
+anchor_bottom = 1.152
+margin_right = -200.0
+margin_bottom = -299.04
+rect_scale = Vector2( 2, 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Red" type="TextureRect" parent="MainMenu/WorldPreview/Tris"]
+self_modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.33
+anchor_top = 0.152549
+anchor_right = 0.58
+anchor_bottom = 0.319549
+margin_left = -7.62939e-06
+margin_top = 1.52588e-05
+margin_right = -1.52588e-05
+margin_bottom = -0.100006
+texture = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Yellow" type="TextureRect" parent="MainMenu/WorldPreview/Tris"]
+self_modulate = Color( 1, 1, 0, 1 )
+anchor_left = 0.47
+anchor_top = 0.152549
+anchor_right = 0.72
+anchor_bottom = 0.319549
+margin_left = -7.62939e-06
+margin_top = 1.52588e-05
+margin_bottom = -0.100006
+texture = ExtResource( 18 )
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Green" type="TextureRect" parent="MainMenu/WorldPreview/Tris"]
+self_modulate = Color( 0, 1, 0, 1 )
+anchor_left = 0.61
+anchor_top = 0.152549
+anchor_right = 0.86
+anchor_bottom = 0.319549
+margin_left = -7.62939e-06
+margin_top = 1.52588e-05
+margin_bottom = -0.100006
+texture = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Blue" type="TextureRect" parent="MainMenu/WorldPreview/Tris"]
+self_modulate = Color( 0, 0, 1, 1 )
+anchor_left = 0.75
+anchor_top = 0.15336
+anchor_right = 1.0
+anchor_bottom = 0.316549
+margin_left = -3.05176e-05
+margin_top = -0.243362
+margin_right = -1.52588e-05
+margin_bottom = 0.800018
+texture = ExtResource( 18 )
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Play" parent="MainMenu/WorldPreview" instance=ExtResource( 15 )]
+material = SubResource( 13 )
+anchor_top = 0.846
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 0.0798645
+margin_right = 3.05176e-05
+margin_bottom = -0.000183105
+text = "Play"
 
 [node name="Back" parent="MainMenu/WorldPreview" instance=ExtResource( 15 )]
-material = SubResource( 11 )
+material = SubResource( 10 )
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 201.0
-margin_top = 522.0
-margin_right = 399.0
-margin_bottom = 599.0
+margin_left = 200.0
+margin_top = 520.0
+margin_right = 400.0
+margin_bottom = 600.0
 text = "Back"
 press_up_sound = ExtResource( 11 )
-[connection signal="pressed" from="MainMenu/Start/Start" to="MainMenu" method="goto_tab" binds= [ 1 ]]
-[connection signal="pressed" from="MainMenu/Start/Start2" to="MainMenu" method="goto_tab" binds= [ 4 ]]
+
+[node name="Name" type="Label" parent="MainMenu/WorldPreview"]
+anchor_right = 0.997
+anchor_bottom = 0.173
+margin_right = 1.19998
+margin_bottom = 2.03996
+custom_fonts/font = ExtResource( 13 )
+text = "World Name"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighScoreTitle" type="Label" parent="MainMenu/WorldPreview"]
+anchor_left = 0.0373057
+anchor_top = 0.17006
+anchor_right = 0.297306
+anchor_bottom = 0.237675
+margin_bottom = -0.160023
+custom_fonts/font = ExtResource( 19 )
+text = "Highscore"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HighScoreAmount" type="Label" parent="MainMenu/WorldPreview"]
+anchor_left = 0.03
+anchor_top = 0.226923
+anchor_right = 0.3075
+anchor_bottom = 0.334923
+margin_bottom = -0.160023
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Globals" parent="." instance=ExtResource( 16 )]
+anchor_top = 0.867
+anchor_bottom = 1.0
+margin_top = -0.200012
+margin_bottom = 0.0
+[connection signal="pressed" from="MainMenu/Start/Start" to="MainMenu" method="goto_tab" binds= [ 4 ]]
 [connection signal="pressed" from="MainMenu/Start/Customize" to="MainMenu" method="goto_tab" binds= [ 2 ]]
 [connection signal="pressed" from="MainMenu/Start/Credits" to="MainMenu" method="goto_tab" binds= [ 3 ]]
 [connection signal="pressed" from="MainMenu/Start/Exit" to="MainMenu" method="exit"]
@@ -494,4 +636,5 @@ press_up_sound = ExtResource( 11 )
 [connection signal="exit" from="MainMenu/Customize" to="MainMenu" method="goto_tab" binds= [ 0, false ]]
 [connection signal="pressed" from="MainMenu/Credits/VBoxContainer/Back" to="MainMenu" method="goto_tab" binds= [ 0, false ]]
 [connection signal="pressed" from="MainMenu/WorldSelect/Back" to="MainMenu" method="goto_tab" binds= [ 0, false ]]
+[connection signal="pressed" from="MainMenu/WorldPreview/Play" to="MainMenu/WorldPreview" method="_on_Play_pressed"]
 [connection signal="pressed" from="MainMenu/WorldPreview/Back" to="MainMenu" method="goto_tab" binds= [ 4, false ]]

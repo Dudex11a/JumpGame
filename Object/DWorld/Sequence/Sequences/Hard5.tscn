@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Object/DWorld/Sequence/Sequence.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Object/Actor/Enemy/Enemies/BasicEnemy/BasicEnemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Object/Actor/Enemy/Enemies/Bounce/Bounce.tscn" type="PackedScene" id=3]
+
+
+[node name="Sequence" instance=ExtResource( 1 )]
+points = 3
+
+[node name="EndPoint" parent="." index="0"]
+position = Vector2( 26.247, 299.168 )
+
+[node name="Enemy" parent="." index="1" instance=ExtResource( 2 )]
+position = Vector2( 55.8167, 43.9539 )
+
+[node name="Enemy2" parent="." index="2" instance=ExtResource( 2 )]
+position = Vector2( 186.492, 213.749 )
+
+[node name="Enemy3" parent="." index="3" instance=ExtResource( 2 )]
+position = Vector2( 320.497, 137.175 )
+
+[node name="Enemy4" parent="." index="4" instance=ExtResource( 2 )]
+position = Vector2( 55.4835, 543.851 )
+
+[node name="Enemy5" parent="." index="5" instance=ExtResource( 2 )]
+position = Vector2( 111.25, 369.062 )
+
+[node name="Enemy6" parent="." index="6" instance=ExtResource( 2 )]
+position = Vector2( 222.782, 439.81 )
+
+[node name="Enemy7" parent="." index="7" instance=ExtResource( 2 )]
+position = Vector2( 295.194, 317.457 )
+
+[node name="Bounce" parent="." index="8" instance=ExtResource( 3 )]
+position = Vector2( 270.224, 47.7826 )

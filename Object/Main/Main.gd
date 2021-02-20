@@ -31,7 +31,7 @@ func game_over():
 
 # Score points
 func _PlayerLine_body_exited(body):
-	if body.get_class() == "EndPoint":
+	if body.get_class() == "SpawnPoint":
 		# Add points from sequence to score
 		player.score += body.get_parent().points
 

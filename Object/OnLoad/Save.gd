@@ -7,12 +7,13 @@ func _init():
 
 var _file := File.new()
 
-var high_score := 0 setget set_high_score
+#var high_score := 0 setget set_high_score
 var currency := 0 setget set_currency
 var hat := ""
 var hat_color: Array = [1, 1, .5]
 var dog_color: Array = [1, 1, .5]
 var obtained_hats := []
+var worlds := {}
 
 signal set_property
 
@@ -22,9 +23,20 @@ func _ready():
 	# Connect when certen properties are changed call group function set_property
 	connect("set_property", get_tree(), "call_group", ["Globals", "set_property"])
 
-func set_high_score(value: int):
-	high_score = value
-	emit_signal("set_property")
+#func set_high_score(value: int):
+#	high_score = value
+#	emit_signal("set_property")
+	
+func set_world_val(world: String, index: String, val):
+	if not worlds.has(world):
+		worlds[world] = {}
+	worlds[world][index] = val
+
+func get_world_val(world: String, index: String):
+	if worlds.has(world):
+		if worlds[world].has(index):
+			return worlds[world][index]
+	return null
 	
 func set_currency(value: int):
 	# Play purchase sound, the "if P" is here because P can be null on startup
@@ -57,7 +69,7 @@ func _to_string() -> String:
 	return String(data)
 
 func save_game():
-	_file.open(save_location, _file.WRITE)\
+	_file.open(save_location, _file.WRITE)
 	#
 	var data := {}
 	for name in get_property_names():

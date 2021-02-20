@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Object/DWorld/SequenceGroup/SequenceGroup.gd" type="Script" id=1]
+
+[node name="SequenceGroup" type="Node"]
+script = ExtResource( 1 )

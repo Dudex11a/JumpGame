@@ -6,7 +6,7 @@
 [ext_resource path="res://Theme/HUD/HUD.tres" type="Theme" id=4]
 [ext_resource path="res://Object/Main/Main.gd" type="Script" id=5]
 [ext_resource path="res://Object/DWorld/IncomingSpawn/IncomingSpawn.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Object/Main/HUD.gd" type="Script" id=7]
+[ext_resource path="res://Object/DWorld/HUD/HUD.gd" type="Script" id=7]
 [ext_resource path="res://Object/Main/Background.gd" type="Script" id=8]
 [ext_resource path="res://Theme/Main/Main.tres" type="Theme" id=9]
 [ext_resource path="res://Object/OnLoad/Globals.tscn" type="PackedScene" id=10]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Object/UI/DButton/DButton.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Shader/DButton.shader" type="Shader" id=15]
 [ext_resource path="res://Shader/SkyMat.tres" type="Material" id=16]
+
 
 
 

@@ -1,9 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Object/Main/HUD.gd" type="Script" id=1]
+[ext_resource path="res://Object/DWorld/HUD/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Theme/HUD/HUD.tres" type="Theme" id=2]
 
-[node name="HUDLayer" type="Node2D"]
+[node name="HUD" type="Node2D" groups=[
+"GameOver",
+"Score",
+]]
+z_index = 9
+script = ExtResource( 1 )
 
 [node name="Background" type="ColorRect" parent="."]
 margin_top = -0.0431595
@@ -16,20 +21,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HUD" type="Control" parent="." groups=[
-"GameOver",
-"Score",
-]]
+[node name="Contents" type="Control" parent="."]
 margin_top = -0.0431595
 margin_right = 400.0
 margin_bottom = 79.9568
 theme = ExtResource( 2 )
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Score" type="Label" parent="HUD"]
+[node name="Score" type="Label" parent="Contents"]
 margin_left = 5.0
 margin_right = 38.0
 margin_bottom = 88.0
@@ -38,7 +39,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Time" type="Label" parent="HUD"]
+[node name="Time" type="Label" parent="Contents"]
 margin_left = 250.0
 margin_right = 396.0
 margin_bottom = 88.0
