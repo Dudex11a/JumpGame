@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Object/Actor/Collectible/Collectible.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Object/Actor/Collectible/Collectibles/Tri/Tri.gd" type="Script" id=2]
-[ext_resource path="res://Image/Dog.png" type="Texture" id=3]
+[ext_resource path="res://Image/Tri.png" type="Texture" id=3]
 
 [sub_resource type="SpriteFrames" id=1]
 resource_local_to_scene = true

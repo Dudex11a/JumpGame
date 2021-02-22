@@ -4,7 +4,7 @@ func get_class(): return "Actor"
 
 export var speed: float = 1
 export var base_gravity: float = 1
-onready var sprite := $Sprite
+onready var sprite: Sprite = $Sprite
 onready var gravity := base_gravity
 var velocity := Vector2()
 var rising := false
