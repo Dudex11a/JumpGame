@@ -137,9 +137,6 @@ shader_param/circle_alpha = 1.0
 [node name="Root" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Background" type="Control" parent="."]
 anchor_right = 1.0
@@ -155,9 +152,6 @@ material = ExtResource( 14 )
 margin_right = 400.0
 margin_bottom = 600.0
 color = Color( 0.666667, 0.992157, 1, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Clouds1" type="Sprite" parent="Background"]
 material = ExtResource( 2 )
@@ -437,6 +431,7 @@ margin_left = 130.0
 margin_right = 255.0
 margin_bottom = 125.0
 world_name = "World1"
+world = ExtResource( 20 )
 
 [node name="WorldCard3" parent="MainMenu/WorldSelect/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
@@ -445,6 +440,7 @@ margin_left = 260.0
 margin_right = 385.0
 margin_bottom = 125.0
 world_name = "World2"
+world = ExtResource( 20 )
 
 [node name="WorldCard4" parent="MainMenu/WorldSelect/ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
@@ -453,6 +449,7 @@ margin_top = 130.0
 margin_right = 125.0
 margin_bottom = 255.0
 world_name = "World3"
+world = ExtResource( 20 )
 
 [node name="Back" parent="MainMenu/WorldSelect" instance=ExtResource( 15 )]
 material = SubResource( 10 )
@@ -507,7 +504,6 @@ anchor_left = 0.33
 anchor_top = 0.152549
 anchor_right = 0.58
 anchor_bottom = 0.319549
-margin_left = -7.62939e-06
 margin_top = 1.52588e-05
 margin_right = -1.52588e-05
 margin_bottom = -0.100006
@@ -522,7 +518,6 @@ anchor_left = 0.47
 anchor_top = 0.152549
 anchor_right = 0.72
 anchor_bottom = 0.319549
-margin_left = -7.62939e-06
 margin_top = 1.52588e-05
 margin_bottom = -0.100006
 texture = ExtResource( 18 )
@@ -537,7 +532,6 @@ anchor_left = 0.61
 anchor_top = 0.152549
 anchor_right = 0.86
 anchor_bottom = 0.319549
-margin_left = -7.62939e-06
 margin_top = 1.52588e-05
 margin_bottom = -0.100006
 texture = ExtResource( 18 )
@@ -625,6 +619,7 @@ anchor_top = 0.867
 anchor_bottom = 1.0
 margin_top = -0.200012
 margin_bottom = 0.0
+
 [connection signal="pressed" from="MainMenu/Start/Start" to="MainMenu" method="goto_tab" binds= [ 4 ]]
 [connection signal="pressed" from="MainMenu/Start/Customize" to="MainMenu" method="goto_tab" binds= [ 2 ]]
 [connection signal="pressed" from="MainMenu/Start/Credits" to="MainMenu" method="goto_tab" binds= [ 3 ]]

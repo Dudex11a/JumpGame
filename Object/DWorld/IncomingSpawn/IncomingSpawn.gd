@@ -19,7 +19,7 @@ func spawn_sequence():
 	if allow_spawning:
 		var seq = get_seq()
 		print(seq.filename)
-		add_child(seq)
+		call_deferred("add_child", seq)
 		seq_created += 1
 
 # Get sequence while being scaled

@@ -5,8 +5,6 @@ const save_location := "user://save_game.dat"
 func _init():
 	load_game()
 
-var _file := File.new()
-
 #var high_score := 0 setget set_high_score
 var currency := 0 setget set_currency
 var hat := ""
@@ -22,6 +20,8 @@ signal game_saved
 func _ready():
 	# Connect when certen properties are changed call group function set_property
 	connect("set_property", get_tree(), "call_group", ["Globals", "set_property"])
+	#
+	self.currency = 100
 
 #func set_high_score(value: int):
 #	high_score = value
@@ -69,6 +69,7 @@ func _to_string() -> String:
 	return String(data)
 
 func save_game():
+	var _file := File.new()
 	_file.open(save_location, _file.WRITE)
 	#
 	var data := {}
@@ -85,6 +86,7 @@ func collect_save():
 	save_game()
 
 func load_game():
+	var _file := File.new()
 	# If the save doesn't exist create one
 	if not _file.file_exists(save_location):
 		save_game()

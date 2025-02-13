@@ -10,7 +10,7 @@ onready var color_button_container := box_2.get_node("Color")
 onready var box_3 := $Box3
 onready var preview_button := box_3.get_node("Buy/Preview")
 
-onready var globals_anim_player := get_node("../../Globals/AnimationPlayer")
+onready var globals_anim_player := get_node("../../Globals/AnimPlayerCoin")
 
 var selected_hat: String
 var selected_hat_button: DButton

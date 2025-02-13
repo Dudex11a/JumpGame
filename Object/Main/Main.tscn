@@ -17,10 +17,6 @@
 [ext_resource path="res://Shader/DButton.shader" type="Shader" id=15]
 [ext_resource path="res://Shader/SkyMat.tres" type="Material" id=16]
 
-
-
-
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 347.933 )
 
@@ -56,10 +52,7 @@ shader_param/radius = 0.25
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
 shader_param/circle_alpha = 1.0
 
-[node name="Main" type="Node2D" groups=[
-"GameOver",
-"Score",
-]]
+[node name="Main" type="Node2D" groups=["GameOver", "Score"]]
 script = ExtResource( 5 )
 
 [node name="Collision" type="Node2D" parent="."]
@@ -96,9 +89,7 @@ shape = SubResource( 1 )
 
 [node name="EnemySpawn" parent="." instance=ExtResource( 6 )]
 
-[node name="Background" type="CanvasLayer" parent="." groups=[
-"PlayerDeath",
-]]
+[node name="Background" type="CanvasLayer" parent="." groups=["PlayerDeath"]]
 layer = -1
 script = ExtResource( 8 )
 
@@ -107,9 +98,6 @@ material = ExtResource( 16 )
 margin_right = 400.0
 margin_bottom = 600.0
 color = Color( 0.596078, 0.886275, 0.976471, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BackgroundAnimation" type="AnimationPlayer" parent="Background"]
 anims/Background = SubResource( 2 )
@@ -162,10 +150,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HUD" type="Control" parent="HUDLayer" groups=[
-"GameOver",
-"Score",
-]]
+[node name="HUD" type="Control" parent="HUDLayer" groups=["GameOver", "Score"]]
 margin_top = -0.0431595
 margin_right = 400.0
 margin_bottom = 79.9568
@@ -252,6 +237,7 @@ press_up_sound = ExtResource( 13 )
 margin_top = 520.0
 margin_right = 400.0
 margin_bottom = 600.0
+
 [connection signal="body_exited" from="DestroyLine" to="." method="_on_DestroyLine_body_exited"]
 [connection signal="body_exited" from="ScoreLine" to="." method="_PlayerLine_body_exited"]
 [connection signal="pressed" from="ResultsLayer/Results/VBoxContainer/Restart" to="." method="restart"]

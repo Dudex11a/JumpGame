@@ -1,6 +1,6 @@
 extends TabContainer
 
-onready var anim_player: = get_node("../AnimationPlayer")
+#onready var anim_player: = get_node("../AnimationPlayer")
 onready var title: = $Start/TitleCenter/Title
 onready var globals: = get_parent().get_node("Globals")
 # If the tabs are transing
@@ -40,9 +40,9 @@ func goto_tab(id: int, anim_in: = true):
 	# Set trans right back to default
 	trans_right = true
 
-# Loop anim
-func play_wobble(anim_name):
-	anim_player.play("TitleWobble")
+## Loop anim
+#func play_wobble(anim_name):
+#	anim_player.play("TitleWobble")
 
 func interp_os():
 	match OS.get_name():
